@@ -1,0 +1,124 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/relaciones/mostrarPerfilExtendido.html
+Julian Perez
+Ultima modificacion: Agosto 09 de 2009, 22:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+   mi perfil extendido: {{ perfilExtendido.user.username }}
+{% endblock %}
+
+{% block importarEstilos %}
+	{% cargarCSS "relaciones/mostrarPerfilExtendido" %}
+{% endblock %}
+
+{% block importarScripts %}
+   {% if llaveGoogleMaps %}
+		{% cargarMapa "div_mapaUbicacion" perfilExtendido.latitud perfilExtendido.longitud  %}
+   {% endif %}
+{% endblock %}
+
+{% block contenido %}
+
+	<table id="table_perfilUsuario" class="table_cuadroInterno">
+		<tr>
+			<td id="td_nombreUsuario">
+				{{ perfilExtendido.user.get_full_name }}
+				<br/>
+				{% cargarImagen rutaImagenDireccionCorreo "" "" "direcci&oacute;n de correo electr&oacute;nico" "direcci&oacute;n de correo electr&oacute;nico" %}<br/>
+			</td>
+		</tr>
+		<tr>
+			<td id="td_informacionPerfil">
+				<div id="div_avatarUsuario">
+					<b><span class="span_textoResaltado">{{ perfilExtendido.user.username }}</span></b><br/>
+					<br/>
+					{% mostrarAvatar perfilExtendido.user "img_avatar" "mi avatar" %}<br/>
+					<br/>
+					{% ifnotequal perfilExtendido.user usuarioActual %}
+						<b>Amigos desde</b><br/>
+						{{ fechaHoraAmistad|date:"j \de F \de Y" }}<br/>
+					{% endifnotequal %}
+				</div>
+				<div id="div_datosPerfil">			
+					<span class="span_datoPerfil">					
+						<b>Uno m&aacute;s desde</b><br/>{{ perfilExtendido.user.last_login|date:"j \de F \de Y" }}
+					</span>					
+					<span class="span_datoPerfil">					
+						<b>Rango</b><br/>{% determinarRangoUsuario perfilExtendido.numeroVisitas %} ({{ perfilExtendido.numeroVisitas }})
+					</span>				
+					<span class="span_datoPerfil">
+						<b>Fecha de nacimiento</b><br/>
+						{% if perfilExtendido.fechaNacimiento %}{{ perfilExtendido.fechaNacimiento|date:"l j \de F \de Y" }}{% else %}-sin establecer-{% endif %}
+					</span>
+					<span class="span_datoPerfil">
+						<b>Sexo</b><br/> 
+						{% ifnotequal perfilExtendido.sexo "z" %}{{ perfilExtendido.get_sexo_display }}{% else %}-sin establecer-{% endifnotequal %}
+					</span>					
+					<span class="span_datoPerfil">						
+						<b>Ubicaci&oacute;n</b><br/>
+						{% ifnotequal perfilExtendido.pais "ZZ" %}
+							{% ifnotequal perfilExtendido.lugar "-sin establecer-" %}{{ perfilExtendido.lugar }} {% else %}En alg&uacute;n lugar {% endifnotequal %}({{ perfilExtendido.get_pais_display }})
+						{% else %}
+							-sin establecer-
+						{% endifnotequal %}
+					</span>
+					<span class="span_datoPerfil">
+						<b>URL personal</b><br/>{{ perfilExtendido.url }}
+					</span>
+					<span class="span_datoPerfil">					
+						<b>Acerca de m&iacute;</b><br/>{{ perfilExtendido.acerca }}
+					</span>
+					<span class="span_datoPerfil">					
+						<b>Espacio utilizado</b><br/>33%
+					</span>					
+				</div>	
+				<div id="div_mapaPerfil">
+				{% if llaveGoogleMaps %}
+					<div id="div_mapaUbicacion"></div>
+				{% else %}
+					{% crearMensajeEstadoAlerta "Ahhh...<br/>El mapa de <i>Google Maps</i> no se pudo cargar.<br/>De todas formas, puedes ver este perfil sin problema." %}
+				{% endif %}
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td id="td_actividadReciente">
+				<p class="p_textoTitulo resaltado">Actividades recientes</p>
+				<b>Ultima visita</b>: {% mostrarFechaHoraContextual perfilExtendido.user.last_login %} ({{ perfilExtendido.user.last_login|date:"j \de F \de Y, \a \l\a\s g:iA" }}).<br/>
+				<br/>
+				{% ifequal numeroActividadesRecientes 0 %}
+					No hay actividades recientes.
+				{% else %}
+					<ul>
+					{% for actividadActual in actividadesRecientes %}
+						<li><b>{{ actividadActual.usuarioAsociado.first_name }}</b> {{ actividadActual.descripcion|safe }} ({% mostrarFechaHoraContextual actividadActual.fechaHoraRealizacion %}).</li>
+					{% endfor %}
+					</ul>
+				{% endifequal %}
+			</td>
+		</tr>
+	</table>
+	<br/>
+	&mdash;
+	<br/><br/>
+	{% ifequal usuarioActual.username perfilExtendido.user.username %}
+		Haz clic {% crearEnlace "enlace_mostrarInicio" "" "" "" "inicio" "aqu&iacute;" %} para regresar a la p&aacute;gina de inicio.<br/>
+		O {% crearEnlace "enlace_mostrarSolicitudesAmistad" "" "" "" "centro de amistades" "aqu&iacute;" %} para regresar al centro de amistades.
+	{% else %}
+		Haz clic {% crearEnlace "enlace_mostrarInicio" "" "" "" "inicio" "aqu&iacute;" %} para regresar a la p&aacute;gina de inicio.
+	{% endifequal %}		
+	
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

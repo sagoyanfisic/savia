@@ -1,0 +1,94 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/usuarios/editarPerfil_avatar.html
+Julian Perez
+Ultima modificacion: Julio 25 de 2009, 10:33
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+   mi perfil: avatar
+{% endblock %}
+
+{% block importarEstilos %}
+	{% cargarCSS "usuarios/editarPerfil" %}
+{% endblock %}
+
+{% block importarScripts %}
+	{% cargarJavascript "usuarios/editarPerfil" %}
+{% endblock %}
+
+{% block contenido %}
+
+   {% include "usuarios/enlaces_menuPerfil.html" %}
+	
+   <p class="p_textoTitulo encabezado">
+		Mi perfil: avatar
+   </p>
+
+	{% if not usuarioActual.get_profile.tieneAvatar %}
+		{% crearMensajeEstadoAlerta "Recuerda una cosa.<br/>Actualmente no tienes avatar.<br/>Selecciona uno, &iquest;no?" %}
+	{% else %}
+		{% if exitoOperacion %}
+			{% crearMensajeEstadoExito "&iexcl;Sin problemas!<br/>Tu avatar fue modificado.<br/>Satisfactoriamente." %}
+		{% endif%}		
+	{% endif %}		
+	Como bien dice el viejo y conocido refr&aacute;n:<br/>
+	<i>una imagen vale m&aacute;s que mil palabras</i>.<br/>
+	Seguro que no querr&aacute;s escribir tantas palabras... &iquest;cierto?<br/>
+	<br/>
+	{% if formulario %}
+		Para establecer tu avatar, elige una imagen almacenada en alg&uacute;n lugar de este computador<br/>
+		<br/>	
+		{% if errorOperacion %}
+			{% crearMensajeEstadoError errores_errorFormulario %}
+		{% endif%}
+		<div class="div_cuadroInterno">
+			<form action="{% url enlace_editarPerfil_avatar %}" method="post" accept-charset="utf-8" enctype="multipart/form-data" onSubmit="return validarFormulario_completo()">
+				{{ formulario.as_p }}
+				<input class="input_boton" type="submit" value="subir mi imagen" />
+			</form>
+		</div>
+		<p class="p_textoTitulo sugerencia">
+			Para tener en cuenta
+		</p>
+		<ul>
+			<li>Establecer tu avatar <u>no es obligatorio</u>.</li>
+			<li>Una imagen con <u>formato v&aacute;lido</u> es un archivo con extensi&oacute;n JPG, PNG o GIF.</li>
+			<li>Oculta tu avatar en tu perfil p&uacute;blico <u>seleccionando ning&uacute;n archivo</u> como tu <i>Imagen</i>, o <u>eliminando</u> tu avatar actual.</li>
+		</ul>
+		{% if usuarioActual.get_profile.tieneAvatar %}
+			<br/><br/>
+			<div id="div_avatarActual">
+				<p class="p_textoTitulo encabezado">
+					Mi avatar actual
+				</p>
+				{% mostrarAvatar usuarioActual "img_avatar" "mi avatar" %}<br/>
+				<br/>
+				<div id="div_eliminarAvatar">
+					Hay unos a quienes <b>no les gusta</b> asignar una imagen a su cuenta de usuario.<br/>
+					Pensando en ellos, y en todos los dem&aacute;s, tambi&eacute;n est&aacute; la opci&oacute;n de <b>no elegir alg&uacute;n avatar</b>.<br/>
+					Haz clic
+					<a title="mi perfil: eliminar mi avatar | {{ nombreAplicacion }}" href="{% url enlace_editarPerfil_avatar_eliminar %}" onClick="return confirmacion_eliminarAvatar(this, '{{ avatarGenerico }}')">aqu&iacute;</a>
+					para <b>eliminar tu avatar actual</b>.
+				</div>
+			</div>
+		{% endif %}
+	{% endif %}
+	<br/>
+	&mdash;
+	<br/><br/>	
+	Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para regresar a la p&aacute;gina de inicio.<br/>
+	O {% crearEnlace "enlace_mostrarPerfil_principal" "" "" "" "mi perfil: resumen" "aqu&iacute;" %} para regresar a la p&aacute;gina principal de tu perfil.		
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

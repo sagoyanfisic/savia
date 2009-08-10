@@ -1,0 +1,80 @@
+/*
+----------------------------------------------------------------------
+---
+savia/media/css/general/mostrarInicio.css
+Julian Perez
+Ultima modificacion: Abril 24 de 2009, 22:36
+---
+----------------------------------------------------------------------
+*/
+
+
+
+/* ---------------------------------------------------------------------- */
+
+#div_iniciarSesion
+{
+	padding: 0em;
+	text-align: center;
+}
+
+#div_introduccionInicio
+{
+	text-align: center;
+}
+
+#div_enlacesInicio
+{
+	padding: 1em;
+	margin: 0em auto 0em auto;
+	display: table;
+	background: #F7F7F7;
+	border: #90A860 solid 3px;
+	font-size: larger;
+	font-weight: bold;
+	text-align: center;
+}
+
+#div_enlacesArriba
+{
+	width: 100%;
+	padding: 1em;
+	display: table-row;
+}
+
+#div_enlaceArribaIzqueirda
+{
+	width: 50%;
+	padding: 1em;
+	display: table-cell;
+}
+
+#div_enlaceArribaDerecha
+{
+	width: 50%;
+	padding: 1em;
+	display: table-cell;
+}
+
+#div_enlacesAbajo
+{
+	width: 100%;
+	padding: 1em;
+	display: table-row;
+}
+
+#div_enlaceAbajoIzqueirda
+{
+	width: 50%;
+	padding: 1em;
+	display: table-cell;
+}
+
+#div_enlaceAbajoDerecha
+{
+	width: 50%;
+	padding: 1em;
+	display: table-cell;
+}
+
+/* ---------------------------------------------------------------------- */

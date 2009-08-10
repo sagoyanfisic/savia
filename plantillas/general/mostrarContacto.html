@@ -1,0 +1,121 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/general/mostrarContacto.html
+Julian Perez
+Ultima modificacion: Mayo 13 de 2009, 10:33
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+   contacto
+{% endblock %}
+
+{% block importarScripts %}
+	{% if usuarioActual.is_anonymous %}
+		{% cargarFuncionJS "otorgarFoco" "remitente" %}
+	{% else %}
+		{% cargarFuncionJS "otorgarFoco" "tituloMensaje" %}
+	{% endif %}
+{% endblock %}
+
+{% block contenido %}
+
+   <p class="p_textoTitulo encabezado">
+		Contacto
+   </p>
+
+	{% if formulario %}	
+		Esta es una l&iacute;nea directa y segura.<br/>
+		Que garantiza que tu mensaje llegar&aacute; hasta las m&aacute;s altas instancias.<br/>
+		O sea, el administrador.<br/>
+		<br/>
+		Para contactar al administrador del sistema, diligencia el formulario a continuaci&oacute;n<br/>
+		<br/>	
+		{% if errorOperacion %}
+			{% crearMensajeEstadoError errores_errorFormulario %}
+		{% endif%}		
+		<div class="div_cuadroInterno">
+			<form action="{% url enlace_mostrarContacto %}" method="post" onSubmit="return validarFormulario_completo()">
+				{% if usuarioActual.is_anonymous %}
+					<fieldset>
+						<legend>remitente</legend>
+					<p>
+						{% if formulario.remitente.errors %}
+							<ul class="errorlist"><li>{{ formulario.remitente.errors }}</li></ul>
+						{% endif %}						
+						<label for="id_remitente">Nombre:</label>
+						{{ formulario.remitente }}
+					</p>
+					<p>
+						{% if formulario.correoRemitente.errors %}
+							<ul class="errorlist"><li>{{ formulario.correoRemitente.errors }}</li></ul>
+						{% endif %}						
+						<label for="id_correoRemitente">Direcci&oacute;n de correo electr&oacute;nico:</label>
+						{{ formulario.correoRemitente }}
+					</p>
+					</fieldset>
+				{% else %}	
+					<input name="remitente" type="hidden" value="usuario"/>
+					<input name="correoRemitente" type="hidden" value="usuario@dominio.com"/>
+				{% endif %}
+				<fieldset>
+					<legend>mensaje</legend>
+					<p>
+						{% if formulario.tituloMensaje.errors %}
+							<ul class="errorlist"><li>{{ formulario.tituloMensaje.errors }}</li></ul>
+						{% endif %}						
+						<label for="id_tituloMensaje">T&iacute;tulo:</label>
+						{{ formulario.tituloMensaje }}
+					</p>
+					<p>
+						{% if formulario.tipoMensaje.errors %}
+							<ul class="errorlist"><li>{{ formulario.tipoMensaje.errors }}</li></ul>
+						{% endif %}						
+						<label for="id_tipoMensaje">Tipo:</label>
+						{{ formulario.tipoMensaje }}
+					</p>						
+					<p>
+						{% if formulario.contenidoMensaje.errors %}
+							<ul class="errorlist"><li>{{ formulario.contenidoMensaje.errors }}</li></ul>
+						{% endif %}						
+						<label for="id_contenidoMensaje">Contenido:</label>
+						{{ formulario.contenidoMensaje }}
+					</p>
+				</fieldset>
+				<br/>
+				<input class="input_boton" type="submit" value="enviar el mensaje"/>
+			</form>
+		</div>
+		<p class="p_textoTitulo sugerencia">
+			Para tener en cuenta
+		</p>
+		<ul>
+			<li>Todos los campos son <u>obligatorios</u>.</li>
+			<li>El campo <i>T&iacute;tulo</i> debe tener <u>como m&aacute;ximo 55 caracteres</u> de longitud.</li>
+			<li>El campo <i>Contenido</i> debe tener <u>como m&aacute;ximo 555 caracteres</u> de longitud.</li>
+		</ul>
+	{% else %}
+		{% crearMensajeEstadoExito "&iexcl;Listo!<br/>Tu mensaje fue enviado.<br/>Satisfactoriamente." %}
+		&iexcl;<b>Gracias por venir</b>!<br/>
+		El administrador, <b>{% if usuarioActual.is_anonymous %}contando con que tus datos son reales{% else %}por medio del sistema interno de mensajes{% endif %}</b>, te contactar&aacute; en breve.<br/>
+		Ahora, basta con que esperes con <b>paciencia</b> una respuesta.<br/>
+		<br/>
+		Por cierto... <b>te enviaremos una copia del mensaje</b> como comprobante.<br/>
+	{% endif %}		
+	<br/>
+	&mdash;
+	<br/><br/>
+	Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para regresar a la p&aacute;gina de inicio.<br/>
+	O {% crearEnlace "enlace_mostrarAyuda" "" "" "" "ayuda" "aqu&iacute;" %} para regresar al centro de ayuda.
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

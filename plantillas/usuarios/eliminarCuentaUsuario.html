@@ -1,0 +1,73 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/usuarios/eliminarCuentaUsuario.html
+Julian Perez
+Ultima modificacion: Abril 19 de 2009, 10:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+   eliminar mi cuenta de usuario
+{% endblock %}
+
+{% block importarScripts %}
+	{% cargarFuncionJS "otorgarFoco" "contrasena" %}
+{% endblock %}
+
+{% block contenido %}
+
+   <p class="p_textoTitulo encabezado">
+   Eliminar mi cuenta de usuario
+   </p>
+
+	{% if formulario %}
+		{% crearMensajeEstadoAlerta "&iexcl;Cuidadito pues!<br/>Tu cuenta de usuario ser&aacute; eliminada por completo.<br/>Pi&eacute;nsalo bien..." %}
+		<br/>
+		Esta es una operaci&oacute;n letal y, lamentablemente, <b>irreversible</b>.<br/>
+		<b>Tu cuenta de usuario ser&aacute; elimanada completamente</b>.<br/>
+		O sea... tu perfil completo, los archivos que has subido... <b>no quedar&aacute;n rastros!</b><br/>
+		<br/>
+		Para eliminar tu cuenta de usuario, diligencia el formulario a continuaci&oacute;n<br/>
+		<br/>
+		{% if errorOperacion %}
+			{% crearMensajeEstadoError errores_errorFormulario %}
+		{% endif%}
+		<div class="div_cuadroInterno">
+			<form action="{% url enlace_eliminarCuentaUsuario %}" method="post" onSubmit="return validarFormulario_completo()">
+				{{ formulario.as_p }}
+				<input class="input_boton" id="remove" type="submit" value="eliminar mi cuenta de usuario"/>
+			</form>
+		</div>
+		<p class="p_textoTitulo sugerencia">
+			Para tener en cuenta
+		</p>
+		<ul>
+			<li>Como medida de precauci&oacute;n debes digitar la <u>contrase&ntilde;a actual</u> de tu cuenta de usuario.</li>
+		</ul>
+		<br/>
+		&mdash;
+		<br/><br/>
+		Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para regresar a la p&aacute;gina de inicio.<br/>
+		O {% crearEnlace "enlace_mostrarPerfil_principal" "" "" "" "mi perfil: resumen" "aqu&iacute;" %} para regresar a la p&aacute;gina principal de tu perfil.
+	{% else %}
+		{% crearMensajeEstadoExito "Listo...<br/>Tu cuenta de usuario fue eliminada.<br/>Satisfactoriamente." %}
+		Ha dejado de <b>fluir</b> en ti la sabia <i>savia</i>...<br/>
+		Ya no eres <b>uno m&aacute;s</b>...<br/>
+		<b>&iexcl;Hasta luego y buena suerte!</b>
+		<br/><br/>
+		&mdash;
+		<br/><br/>
+		&iquest;Arrepentido, cierto? Haz clic {% crearEnlace "enlace_crearCuentaUsuario" "" "" "" "d&eacute;jala fluir... &iexcl;otra vez!" "aqu&iacute;" %} para obtener una nueva cuenta de usuario.								
+	{% endif %}	
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

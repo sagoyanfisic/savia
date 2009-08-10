@@ -1,0 +1,99 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/usuarios/perfil_publico.html
+Julian Perez
+Ultima modificacion: Marzo 10 de 2009, 10:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+	mi perfil p&uacute;blico: {{ perfilPublico.user }}
+{% endblock %}
+
+{% block importarEstilos %}
+	{% cargarCSS "usuarios/mostrarPerfil" %}
+{% endblock %}
+
+{% block importarScripts %}
+	{% cargarJavascript "usuarios/mostrarPerfil" %}
+	{% if llaveGoogleMaps %}
+		{% cargarMapa "div_mapaUbicacion" perfilPublico.latitud perfilPublico.longitud  %}
+   {% endif %}
+{% endblock %}
+
+{% block contenido %}
+
+	<table id="table_perfilUsuario" class="table_cuadroInterno">
+		<tr>
+			<td id="td_nombreUsuario">
+				{{ perfilPublico.user.username }}<br/>
+				<span id="span_rangoUsuario">{% determinarRangoUsuario perfilPublico.numeroVisitas %} ({{ perfilPublico.numeroVisitas }})</span>
+			</td>
+		</tr>
+		<tr>
+			<td id="td_informacionPerfil">
+				<div id="div_avatarUsuario">
+					{% mostrarAvatar perfilPublico.user "img_avatar" "mi avatar" %}<br/>
+					<br/>
+					{% crearEnlacesAmistad perfilPublico.user usuarioActual %}
+				</div>
+				<div id="div_datosPerfil">
+					<span class="span_datoPerfil">
+						<b>Uno m&aacute;s desde</b><br/>{{ perfilPublico.user.date_joined|date:"j \de F \de Y" }}
+					</span>
+					<span class="span_datoPerfil">
+						<b>Edad</b><br/>{{ edadUsuario }}
+					</span>
+					<span class="span_datoPerfil">				
+						<b>Sexo</b><br/>{% ifnotequal perfilPublico.sexo "z" %}{{ perfilPublico.get_sexo_display }}{% else %}S&oacute;lo hay dos opciones{% endifnotequal %}<br/>
+					</span>
+					<span class="span_datoPerfil">						
+						<b>Ubicaci&oacute;n</b><br/> 
+						{% ifnotequal perfilPublico.pais "ZZ" %}
+							{% ifnotequal perfilPublico.lugar "-sin establecer-" %}{{ perfilPublico.lugar }} {% else %}En alg&uacute;n lugar {% endifnotequal %}({{ perfilPublico.get_pais_display }})
+						{% else %}
+							En alg&uacute;n lugar de un gran pa&iacute;s
+						{% endifnotequal %}
+					</span>
+					<span class="span_datoPerfil">
+						<b>URL personal</b><br/>{{ perfilPublico.url }}
+					</span>
+					<span class="span_datoPerfil">						
+						<b>Acerca de m&iacute;</b><br/>{{ perfilPublico.acerca }}
+					</span>				
+				</div>
+				<div id="div_mapaPerfil">
+				{% if llaveGoogleMaps %}
+					<div id="div_mapaUbicacion"></div>
+				{% else %}
+					{% crearMensajeEstadoAlerta "Ahhh...<br/>El mapa de <i>Google Maps</i> no se pudo cargar.<br/>De todas formas, puedes ver este perfil sin problema." %}
+				{% endif %}
+				</div>
+			</td>
+		</tr>
+	</table>
+	<br/>
+	&mdash;
+	<br/><br/>	
+	{% if usuarioActual.is_anonymous %}
+		Haz clic {% crearEnlace "enlace_mostrarInicio" "" "" "" "inicio" "aqu&iacute;" %} para ir a la p&aacute;gina de inicio.		
+	{% else %}	
+		{% ifequal usuarioActual.username perfilPublico.user.username %}
+			Haz clic {% crearEnlace "enlace_mostrarInicio" "" "" "" "inicio" "aqu&iacute;" %} para regresar a la p&aacute;gina de inicio.<br/>
+			O {% crearEnlace "enlace_mostrarPerfil_principal" "" "" "" "mi perfil: resumen" "aqu&iacute;" %} para regresar a la p&aacute;gina principal de tu perfil.	
+		{% else %}
+			Haz clic {% crearEnlace "enlace_mostrarInicio" "" "" "" "inicio" "aqu&iacute;" %} para regresar a la p&aacute;gina de inicio.
+		{% endifequal %}		
+	{% endif %}	
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

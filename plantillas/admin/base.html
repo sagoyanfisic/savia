@@ -1,0 +1,56 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/admin/base.html
+Julian Perez
+Ultima modificacion: Marzo 09 de 2009, 16:08
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra%}
+	administraci&oacute;n
+{% endblock %}
+
+{% block importarEstilos %}
+   <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/base.css{% endblock %}" />
+	{% cargarCSS "admin/base" %}
+	{% block extrastyle %}{% endblock %}
+   {% block extrahead %}{% endblock %}
+   {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+{% endblock %}
+
+{% load i18n %}
+
+
+{% block body %}
+   <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
+{% endblock %}
+
+{% block contenido %}
+
+   {% if messages %}
+   <ul class="messagelist">{% for message in messages %}<li>{{ message|escape }}</li>{% endfor %}</ul>
+   {% endif %}
+
+   <div id="content" class="{% block coltype %}colM{% endblock %}">
+      {% block breadcrumbs %}<div class="breadcrumbs"><a href="/">{% trans 'Home' %}</a>{% if title %} &rsaquo; {{ title|escape }}{% endif %}</div>{% endblock %}
+      {% block pretitle %}{% endblock %}
+      {% block content_title %}{% if title %}<h1>{{ title|escape }}</h1>{% endif %}{% endblock %}
+      {% block content %}
+      {% block object-tools %}{% endblock %}
+      {{ content }}
+      {% endblock %}
+      {% block sidebar %}{% endblock %}
+   <br class="clear" />
+   </div>
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

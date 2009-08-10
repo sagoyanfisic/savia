@@ -1,0 +1,32 @@
+/*
+----------------------------------------------------------------------
+---
+savia/media/css/almacenamiento/base.css
+Julian Perez
+Ultima modificacion: MAyo 31 de 2009, 22:36
+---
+----------------------------------------------------------------------
+*/
+
+
+
+/* ---------------------------------------------------------------------- */
+/*
+Paleta de colores:
+- Azul oscuro: #1E2444
+- Verde fondo logo: #808000
+- Azul claro: #90C0D8
+- Verde oliva: #486030
+- Amarillo claro: #F5F3BF
+- Verde oliva 2: #90A860
+- Cafe: #804000
+*/
+
+#div_espacio
+{
+	padding: 20px 10px 20px 10px;
+	border-top: #1E2444 solid 2px;
+	border-bottom: #1E2444 solid 2px;
+}
+
+/* ---------------------------------------------------------------------- */

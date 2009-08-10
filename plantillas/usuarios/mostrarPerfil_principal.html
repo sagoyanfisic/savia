@@ -1,0 +1,114 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/usuarios/mostrarPerfil_principal.html
+Julian Perez
+Ultima modificacion: Julio 24 de 2009, 22:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+   mi perfil: resumen
+{% endblock %}
+
+{% block importarEstilos %}
+	{% cargarCSS "usuarios/mostrarPerfil" %}
+{% endblock %}
+
+{% block importarScripts %}
+   {% if llaveGoogleMaps %}
+		{% cargarMapa "div_mapaUbicacion" perfilActual.latitud perfilActual.longitud  %}
+   {% endif %}
+{% endblock %}
+
+{% block contenido %}
+
+   {% include "usuarios/enlaces_menuPerfil.html" %}
+
+   <p class="p_textoTitulo encabezado">
+		Mi perfil: resumen
+   </p>	
+	
+	Hay momentos en que es necesario detenerse y pensar.<br/>
+	Por ejemplo... <i>&iquest;los datos en mi cuenta de usuario y mi perfil son correctos y est&aacute;n completos?</i><br/>
+	Si no los recuerdas todos... aqu&iacute; est&aacute;n!<br/>
+	<br/>
+	Los enlaces que est&aacute;n m&aacute;s abajo tambi&eacute;n pretenden ayudarte... son para tenerlos en cuenta!<br/>
+	<br/>
+	<table id="table_perfilUsuario" class="table_cuadroInterno">
+		<tr>
+			<td id="td_nombreUsuario">
+				{% if usuarioActual.get_full_name %}
+					{{ usuarioActual.get_full_name }}
+				{% else %}
+					{% crearMensajeLinealAlerta "Los nombres y apellidos no han sido establecidos." %}
+				{% endif %}
+				<br/>
+				{% cargarImagen rutaImagenDireccionCorreo "" "" "direcci&oacute;n de correo electr&oacute;nico" "direcci&oacute;n de correo electr&oacute;nico" %}<br/>
+			</td>
+		</tr>
+		<tr>
+			<td id="td_informacionPerfil">
+				<div id="div_avatarUsuario">
+					<a href="{% url enlace_editarPerfil_avatar %}">{% mostrarAvatar usuarioActual "img_avatar" "mi avatar" %}</a>
+				</div>
+				<div id="div_datosPerfil">
+					<span class="span_datoPerfil">					
+						<b>Rango</b><br/>{% determinarRangoUsuario perfilActual.numeroVisitas %}
+					</span>				
+					<span class="span_datoPerfil">
+						<b>Fecha de nacimiento</b><br/>
+						{% if perfilActual.fechaNacimiento %}
+							{{ perfilActual.fechaNacimiento|date:"l j \de F \de Y" }}	
+						{% else %}
+							{% crearMensajeLinealAlerta "Sin establecer." %}
+						{% endif %}
+					</span>
+					<span class="span_datoPerfil">
+						<b>Sexo</b><br/> 
+						{% ifnotequal perfilActual.sexo "z" %}
+							{{ perfilActual.get_sexo_display }}
+						{% else %}
+							{% crearMensajeLinealAlerta "Sin establecer." %}
+						{% endifnotequal %}
+					</span>					
+					<span class="span_datoPerfil">						
+						<b>Ubicaci&oacute;n</b><br/>
+						{% ifnotequal perfilActual.pais "ZZ" %}
+							{% ifnotequal perfilActual.lugar "-sin establecer-" %}{{ perfilActual.lugar }} {% else %}En alg&uacute;n lugar {% endifnotequal %}({{ perfilActual.get_pais_display }})
+						{% else %}
+							{% crearMensajeLinealAlerta "Sin establecer." %}
+						{% endifnotequal %}
+					</span>
+					<span class="span_datoPerfil">
+						<b>URL personal</b><br/>{{ perfilActual.url }}
+					</span>
+					<span class="span_datoPerfil">					
+						<b>Acerca de m&iacute;</b><br/>{{ perfilActual.acerca }}
+					</span>
+				</div>	
+				<div id="div_mapaPerfil">
+				{% if llaveGoogleMaps %}
+					<div id="div_mapaUbicacion"></div>
+				{% else %}
+					{% crearMensajeEstadoAlerta "Ahhh...<br/>El mapa de <i>Google Maps</i> no se pudo cargar.<br/>De todas formas, puedes ver este perfil sin problema." %}
+				{% endif %}
+				</div>
+			</td>
+		</tr>
+	</table>
+	<br/>
+	&mdash;
+	<br/><br/>	
+	Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para regresar a la p&aacute;gina de inicio.	
+	
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

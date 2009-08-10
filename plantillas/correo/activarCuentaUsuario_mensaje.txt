@@ -1,0 +1,16 @@
+-----------------------------------------
+Activar mi cuenta de usuario
+-----------------------------------------
+
+Hola {{ usuarioActual_nombre }}!
+Este mensaje ha llegado hasta aqui porque vas a activar una nueva cuenta de usuario.
+No te preocupes... lo hacemos facil para ti.
+
+Para activar tu cuenta de usuario ({{ usuarioActual }}), haz clic aqui:
+{{ protocolo }}://{{ dominio }}{% url enlace_crearCuentaUsuario_activar uidb36=uid,token=token %}
+
+Sigue disfrutando!
+
+---
+
+sabia savia por mi cuerpo

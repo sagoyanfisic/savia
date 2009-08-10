@@ -1,0 +1,86 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/relaciones/mostrarSolicitudesAmistad.html
+Julian Perez
+Ultima modificacion: Agosto 04 de 2009, 10:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra%}
+	solicitudes de amistad recibidas
+{% endblock %}
+
+{% block importarEstilos %}
+	{% cargarCSS "relaciones/mostrarSolicitudesAmistad" %}
+{% endblock %}
+
+{% block importarScripts %}
+	{% cargarJavascript "relaciones/mostrarSolicitudesAmistad" %}
+{% endblock %}
+
+{% block contenido %}
+
+   {% include "relaciones/enlaces_menuAmistades.html" %}
+
+	<p class="p_textoTitulo encabezado">
+		Solicitudes de amistad recibidas
+	</p>
+
+	Bienvenido al centro de amistades.<br/>
+	Hay gente que desea conocerte mejor.<br/>
+	&iexcl;Prep&aacute;rate para engrosar tu lista de amigos!<br/>	
+	<br/>
+	A continuaci&oacute;n est&aacute;n todos las solicitudes de amistad recibidas<br/>				
+	<br/>	
+	{% ifnotequal solicitudesSeleccionadas.paginator.count 0 %}
+		<div class="div_cuadroInterno">
+			{% mostrarEnlacesPaginacion solicitudesSeleccionadas "N&uacute;mero total de solicitudes de amistad recibidas" numeroTotalSolicitudes %}
+			<table id="table_listadoAmistades">
+				<tr id="tr_encabezadoListado">
+					<th id="th_columnaUsuario">enviada por</th>
+					<th id="th_columnaFechaHora">fecha y hora de recepci&oacute;n</th>
+					<th id="th_ColumnaOpciones">opciones</th>
+				</tr>
+				{% for solicitudActual in solicitudesSeleccionadas.object_list %}
+					<tr>
+						<td>
+							{{ solicitudActual.usuarioSolicitante.get_full_name }}
+							({% crearEnlacePerfil solicitudActual.usuarioSolicitante usuarioActual solicitudActual.usuarioSolicitante.username %})<br/>
+						</td>
+						<td>
+							Recibida {% mostrarFechaHoraContextual solicitudActual.fechaHoraSolicitud %}.<br/>
+							{{ solicitudActual.fechaHoraSolicitud|date:"j \de F \de Y, \a \l\a\s g:iA" }}.
+						</td>	
+						<td>		
+							<a href="{% url enlace_editarSolicitudAmistad_aprobar solicitudActual.id %}"
+							onClick="return confirmacion_aprobarSolicitudAmistad(this, '{{ solicitudActual.usuarioSolicitante.first_name }}', '{{ amistadesSeleccionadas.number }}')">
+								{% cargarImagen "estado_exito.gif" "" "img_opcionesAmistad" "" "aceptar esta solicitud" %}
+							</a>
+							<a href="{% url enlace_editarSolicitudAmistad_rechazar solicitudActual.id %}"
+							onClick="return confirmacion_rechazarSolicitudAmistad(this, '{{ solicitudActual.usuarioSolicitante.first_name }}', '{{ amistadesSeleccionadas.number }}')">
+								{% cargarImagen "estado_error.gif" "" "img_opcionesAmistad" "" "rechazar esta solicitud" %}
+							</a>
+						</td>		
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	{% else %}
+		{% crearMensajeEstadoAlerta "&iexcl;Ooops!<br/>Actualmente no tienes solicitudes de amistad pendientes.<br/>Pronto llegar&aacute;n." %}
+	{% endifnotequal %}
+	<br/>
+	&mdash;
+	<br/><br/>	
+	Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para regresar a la p&aacute;gina de inicio.	
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

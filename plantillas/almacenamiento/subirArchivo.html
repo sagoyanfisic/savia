@@ -1,0 +1,54 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/almacenamiento/subirArchivo.html
+Julian Perez
+Ultima modificacion: Mayo 27 de 2009, 10:16
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra%}
+	subir un archivo
+{% endblock %}
+
+{% block importarScripts %}
+	{% cargarJavascript "almacenamiento/subirArchivo" %}
+	{% cargarFuncionJS "otorgarFoco" "id_nombre" %}
+{% endblock %}
+
+{% block contenido %}
+
+	<p class="p_textoTitulo encabezado">
+		Subir un archivo
+	</p>
+	<!--
+	Uno... dos... tres... muchos.<br/>
+	Sube archivos a tu espacio.<br/>
+	Estar&aacute;n esperando por t&iacute; con ansiedad.<br/><br/>
+	Para subir un archivo, diligencia el formulario a continuaci&oacute;n<br/>
+	<br/>-->
+	<p class="p_textoTitulo">En remodelacion!</b>
+	<!--
+	<p class="p_tituloTexto sugerencia">
+		Para tener en cuenta.
+	</p>
+	<ul>
+		<li>Todos los campos son <u>obligatorios</u>.
+		<li>Para que un archivo sea <u>v&aacute;lido</u> debe tener extensi&oacute;n TXT, PDF, DOC, ODT, PPT, XLS, XML, HTML o RAR.
+		<li>El campo <i>Nombre</i> corresponder&aacute; al nombre asignado para el almacenamiento del archivo. <u>No es necesario</u> que coincida con el nombre del archivo original.
+	</ul>			
+	<br/>
+	&mdash;
+	<br/><br/>
+	Haz clic {% crearEnlace "enlace_mostrarEspacio" "" "" "" "mi espacio" "aqu&iacute;" %} para ir a la p&aacute;gina principal de tu espacio.<br/>-->
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

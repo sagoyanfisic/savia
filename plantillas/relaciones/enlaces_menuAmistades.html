@@ -1,0 +1,33 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/relaciones/enlaces_menuAmistades.html
+Julian Perez
+Ultima modificacion: Agosto 04 de 2009, 22:08
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% load etiquetas %}
+
+<div class="div_enlacesMenu">
+	<div class="div_flotarIzquierda">
+		<span class="span_textoResaltado">mis amistades</span>
+		<br/>	
+		{% crearEnlace "enlace_mostrarSolicitudesAmistad" "" "" "" "solicitudes de amistad recibidas" "solicitudes recibidas" %}				
+		&nbsp;&middot;&nbsp;
+		{% crearEnlace "enlace_mostrarListaAmigos" "" "" "" "mi lista de amigos" "mi lista de amigos" %}	
+		&nbsp;&middot;&nbsp;
+		{% crearEnlace "enlace_mostrarPerfilExtendido" usuarioActual.username "" "" "mi perfil extendido" "ver mi perfil extendido" %}		
+	</div>
+	<div class="div_flotarDerecha">
+		<span class="span_textoResaltado">nuevas amistades</span>
+		<br/>		
+		{% crearEnlace "enlace_busquedaUsuarios" "" "" "" "b&uacute;squeda de usuarios" "b&uacute;squeda de usuarios" %}
+	</div>
+	<div class="div_limpiarZona"></div>
+</div>
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

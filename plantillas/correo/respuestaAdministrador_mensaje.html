@@ -1,0 +1,32 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/correo/respuestaAdministrador_mensaje.html
+Julian Perez
+Ultima modificacion: Agosto 02 de 2009, 10:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "correo/base.html" %}
+
+{% block tituloMensaje %}
+	Respuesta del administrador
+{% endblock %}
+
+{% block contenido %}
+	Este mensaje ha llegado hasta aqu&iacute; porque enviaste un mensaje de contacto al administrador.<br/>
+	No te preocupes...<br/>
+	Aqu&iacute; est&aacute; tu respuesta.<br/>
+	<br/>
+	&mdash;<br/>
+	{{ contenidoMensaje_html|safe }}
+	<br/>&mdash;<br/>
+	<br/>
+	Atentamente<br/>
+	<b>Administrador del sistema</b>
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

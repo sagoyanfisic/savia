@@ -1,0 +1,81 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/relaciones/enviarCorreo.html
+Julian Perez
+Ultima modificacion: Agosto 05 de 2009, 10:33
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+   enviar un correo electr&oacute;nico
+{% endblock %}
+
+{% block importarEstilos %}
+	{% cargarCSS "admin/base" %}
+{% endblock %}
+
+{% block contenido %}
+
+	{% include "relaciones/enlaces_menuMensajes.html" %}
+
+   <p class="p_textoTitulo encabezado">
+		Enviar un correo electr&oacute;nico
+   </p>
+
+	{% if formulario %}	
+		Y esta es la ventana de comunicaci&oacute;n con los dem&aacute;s.<br/>
+		Con los usuarios que a&uacute;n no est&aacute;n entre nosotros.<br/>
+		No los olvides... escr&iacute;beles seguido.<br/>
+		<br/>
+		{% if formulario %}
+			Para enviar un correo electr&oacute;nico, diligencia el formulario a continuaci&oacute;n<br/>
+			<br/>	
+			{% if errorOperacion %}
+				{% crearMensajeEstadoError errores_errorFormulario %}
+			{% endif%}		
+			<div class="div_cuadroInterno">
+				<b><a title="mis mensajes recibidos | {{ nombreAplicacion }}" href="{% url enlace_mostrarMensajes_recibidos %}?pagina={{ paginaOrigenMensaje }}">regresar</a></b><br/>
+				<br/>			
+				En referencia al mensaje que recibiste de <b>{{ mensajeActual.usuarioOrigen.get_full_name }} ({{ mensajeActual.usuarioOrigen.username }})</b>, 
+				{% mostrarFechaHoraContextual mensajeActual.fechaHoraCreacion %} ({{ mensajeActual.fechaHoraCreacion|date:"j \de F \de Y, \a \l\a\s g:iA" }}):<br/>
+				<br/>
+				<b><u>{{ mensajeActual.titulo }}</u></b><br/>
+				<i>{{ mensajeActual.contenido }}</i><br/>
+				<br/>
+				<hr>				
+				<form action="{% url enlace_enviarCorreo mensajeActual.id %}?paginaOrigen={{ paginaOrigenMensaje }}" method="post" onSubmit="return validarFormulario_completo()">
+					{{ formulario.as_p }}
+					<input class="input_boton" type="submit" value="enviar el correo electr&oacute;nico"/>
+				</form>
+			</div>
+			<p class="p_textoTitulo sugerencia">
+				Para tener en cuenta
+			</p>
+			<ul>
+				<li>Todos los campos son <u>obligatorios</u>.</li>
+				<li>El campo <i>Contenido</i> debe tener <u>como m&aacute;ximo 555 caracteres</u> de longitud.</li>
+			</ul>
+		{% endif %}
+	{% else %}
+		{% crearMensajeEstadoExito "&iexcl;Listo!<br/>El correo electr&oacute;nico fue enviado.<br/>Satisfactoriamente." %}
+		&iexcl;<b>Buena esa</b>!<br/>
+		Es un deber dar <b>respuestas oportunas</b> a los usuarios externos.<br/>
+		<b>Potencialmente</b> nuevos miembros.<br/>
+	{% endif %}		
+	<br/>
+	&mdash;
+	<br/><br/>
+	Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para regresar a la p&aacute;gina de inicio.<br/>
+	O {% crearEnlace "enlace_mostrarMensajes_recibidos" "" "" "" "mis mensajes recibidos" "aqu&iacute;" %} para regresar a tus mensajes recibidos.
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

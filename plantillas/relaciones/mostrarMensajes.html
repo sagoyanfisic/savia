@@ -1,0 +1,117 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/relaciones/mostrarMensajes.html
+Julian Perez
+Ultima modificacion: Julio 31 de 2009, 10:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra%}
+	mis mensajes {% if mostrarRecibidos %}recibidos{% else %}enviados{% endif %}
+{% endblock %}
+
+{% block importarEstilos %}
+	{% if usuarioActual.is_staff %}{% cargarCSS "admin/base" %}{% endif %}
+	{% cargarCSS "relaciones/mostrarMensajes" %}
+{% endblock %}
+
+{% block importarScripts %}
+	{% cargarJavascript "relaciones/mostrarMensajes" %}
+{% endblock %}
+
+{% block contenido %}
+
+   {% include "relaciones/enlaces_menuMensajes.html" %}
+
+	<p class="p_textoTitulo encabezado">
+		Mis mensajes {% if mostrarRecibidos %}recibidos{% else %}enviados{% endif %}
+	</p>
+
+	{% if mostrarRecibidos %}
+		Bienvenido al centro de mensajes.<br/>
+		Desde aqu&iacute; puedes comunicarte con otros usuarios.<br/>
+		Y ellos, contigo.<br/>
+	{% else %}
+		Siempre es bueno tener en cuenta los mensajes enviados.<br/>
+		Pueden traer recuerdos... buenos y malos.<br/>
+		O simplemente ayudar para tener registros de las cosas que decimos.<br/>
+	{% endif %}
+	<br/>
+	A continuaci&oacute;n est&aacute;n todos los mensajes que has {% if mostrarRecibidos %}recibido{% else %}enviado{% endif %}<br/>
+	<br/>	
+	{% ifnotequal mensajesSeleccionados.paginator.count 0 %}
+		<div class="div_cuadroInterno">	
+			{% mostrarEnlacesPaginacion mensajesSeleccionados "N&uacute;mero total de mensajes" numeroTotalMensajes %}
+			<table id="table_bandejaMensajes">
+				<tr id="tr_encabezadoBandeja">
+					{% if mostrarRecibidos %}<th></th>{% endif %}
+					<th id="th_columnaTitulo">t&iacute;tulo</th>
+					<th id="th_columnaUsuario">enviado {% if mostrarRecibidos %}por{% else %}a{% endif %}</th>
+					<th id="th_columnaFechaHora">fecha y hora de {% if mostrarRecibidos %}recepci&oacute;n{% else %}env&iacute;o{% endif %}</th>
+					<th></th>
+				</tr>
+				{% for mensajeActual in mensajesSeleccionados.object_list %}
+					{% if mostrarRecibidos %}
+						<tr class="tr_{% if mensajeActual.esNuevo %}mensajeNuevo{% else %}mensajeViejo{% endif %}">
+					{% else %}
+						<tr>
+					{% endif %}
+						{% if mostrarRecibidos %}
+							<td>
+								<a href="{% url enlace_editarMensaje_modificarEstado mensajeActual.id %}" onClick="return modificarEstadoMensaje_bandeja(this)">
+									{% if mensajeActual.esImportante%}
+										{% cargarImagen "estado_importante.gif" "" "img_opcionesMensaje" "" "marcar/desmarcar como mensaje importante" %}
+									{% else %}
+										{% cargarImagen "estado_ordinario.gif" "" "img_opcionesMensaje" "" "marcar/desmarcar como mensaje importante" %}
+									{% endif %}
+								</a>
+							</td>
+						{% endif %}
+						<td>
+							{% if mostrarRecibidos %}
+								<a title="ver mensaje | {{ nombreAplicacion }}" href="{% url enlace_leerMensaje_recibido mensajeActual.id %}?paginaOrigen={{ mensajesSeleccionados.number }}">{{ mensajeActual.titulo }}</a>
+							{% else %}
+								<a title="ver mensaje | {{ nombreAplicacion }}" href="{% url enlace_leerMensaje_enviado mensajeActual.id %}?paginaOrigen={{ mensajesSeleccionados.number }}">{{ mensajeActual.titulo }}</a>
+							{% endif %}						
+						</td>
+						<td>
+							{% if mostrarRecibidos %}
+								{{ mensajeActual.usuarioOrigen.get_full_name }}
+								({% crearEnlacePerfil mensajeActual.usuarioOrigen usuarioActual mensajeActual.usuarioOrigen.username %})<br/>
+							{% else %}
+								{{ mensajeActual.usuarioDestino.get_full_name }}
+								({% crearEnlacePerfil mensajeActual.usuarioDestino usuarioActual mensajeActual.usuarioDestino.username %})<br/>
+							{% endif %}
+						</td>
+						<td>
+							{% if mostrarRecibidos %}Recibido{% else %}Enviado{% endif %} {% mostrarFechaHoraContextual mensajeActual.fechaHoraCreacion %}.<br/>
+							{{ mensajeActual.fechaHoraCreacion|date:"j \de F \de Y, \a \l\a\s g:iA" }}.							
+						</td>
+						<td>
+							<a href="{% url enlace_eliminarMensaje mensajeActual.id %}" onClick="return confirmacion_eliminarMensaje(this, '{{ mensajesSeleccionados.number }}')">
+								{% cargarImagen "misc_eliminar.gif" "" "img_opcionesMensaje" "" "eliminar este mensaje" %}
+							</a>
+						</td>						
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	{% else %}
+		{% crearMensajeEstadoAlerta "&iexcl;Ooops!<br/>Actualmente no tienes mensajes almacenados.<br/>Ni uno solito..." %}
+	{% endifnotequal %}
+	<br/>
+	&mdash;
+	<br/><br/>	
+	Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para regresar a la p&aacute;gina de inicio.	
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

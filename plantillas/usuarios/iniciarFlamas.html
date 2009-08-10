@@ -1,0 +1,41 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/templates/usuarios/flamas.html
+Julian Perez
+Ultima modificacion: Marzo 02 de 2009, 16:08
+""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+<!-- """""""""" -->
+
+{% extends "base.html" %}
+
+{% block tituloBarra %}
+	flamas
+{% endblock %}
+
+{% block body %}
+	<body>
+{% endblock %}
+
+{% block contenido %}
+
+	<form action='/flamas/' method='post'>
+		<label for="destino">
+			Destino de las flamas
+			<br/>
+			<input name="destino" value="" id="destino" type="text"/>
+		</label>
+		<label for="numero">
+			N&uacute;mero de flamas
+			<br/>
+			<input name="numero" value="" id="numero" type="text"/>
+		</label>
+		<br/>
+		<input class="input_boton" type="submit" value="iniciar flamas! }:-)"/>
+		<br/><br/>
+	</form>
+
+{% endblock %}
+
+<!-- """""""""" -->

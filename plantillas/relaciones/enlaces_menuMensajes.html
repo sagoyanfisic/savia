@@ -1,0 +1,31 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/relaciones/enlaces_menuMensajes.html
+Julian Perez
+Ultima modificacion: Abril 26 de 2009, 22:08
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% load etiquetas %}
+
+<div class="div_enlacesMenu">
+	<div class="div_flotarIzquierda">
+		<span class="span_textoResaltado">mis mensajes</span>
+		<br/>	
+		{% crearEnlace "enlace_mostrarMensajes_recibidos" "" "" "" "mis mensajes recibidos" "mensajes recibidos" %}
+		&nbsp;&middot;&nbsp;
+		{% crearEnlace "enlace_mostrarMensajes_enviados" "" "" "" "mis mensajes enviados" "mensajes enviados" %}
+	</div>
+	<div class="div_flotarDerecha">
+		<span class="span_textoResaltado">mensajes nuevos</span>
+		<br/>		
+		{% crearEnlace "enlace_enviarMensaje" "" "" "" "mis mensajes: enviar un mensaje" "enviar un mensaje" %}
+	</div>
+	<div class="div_limpiarZona"></div>
+</div>
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

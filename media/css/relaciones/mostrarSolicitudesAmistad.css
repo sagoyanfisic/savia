@@ -1,0 +1,84 @@
+/*
+----------------------------------------------------------------------
+---
+savia/media/css/relaciones/mostrarSolicitudesAmistad.css
+Julian Perez
+Ultima modificacion: Agosto 04 de 2009, 22:36
+---
+----------------------------------------------------------------------
+*/
+
+
+
+/* ---------------------------------------------------------------------- */
+
+#table_listadoAmistades
+{
+	width: 100%;
+	padding: 1em;
+	background: #F7F7F7;
+	border: #90A860 solid 2px;
+	text-align: center;
+}
+
+#tr_encabezadoListado
+{
+	height: 2em;
+	background: #804000;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+#th_columnaUsuario
+{
+	width: 53%;
+}
+
+#th_columnaFechaHora
+{
+	width: 33%;
+}
+
+#th_ColumnaOpciones
+{
+	width: 13%;
+}
+
+.tr_amistadDestacada
+{
+	font-weight: bold;
+}
+
+.tr_amistadRegular
+{
+	font-weight: normal;
+}
+
+.img_opcionesAmistad
+{
+	vertical-align: middle;
+	border: none;
+}
+
+.span_mensajeOrdinario
+{
+	padding: 0em 0em 0em 2em;
+	background: url(../../img/estado_ordinario.gif) left center no-repeat;
+	float: left;
+}
+
+.span_mensajeImportante
+{
+	padding: 0em 0em 0em 2em;
+	background: url(../../img/estado_importante.gif) left center no-repeat;
+	float: left;
+}
+
+.div_mensajeActual
+{
+	padding: 0em 1em 1em 1em;
+	background: #F7F7F7;
+	border: #90A860 solid 2px;
+}
+
+/* ---------------------------------------------------------------------- */

@@ -1,0 +1,39 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/404.html
+Julian Perez
+Ultima modificacion: Mayo 12 de 2009, 10:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra%}
+	error 404
+{% endblock %}
+
+{% block contenido %}
+
+   <p class="p_textoTitulo encabezado">
+		P&aacute;gina no encontrada
+   </p>
+	
+	{% crearMensajeEstadoError "&iexcl;Ooops!<br/>Hay problemas.<br/>Error 404." %}
+	&iquest;<b>A d&oacute;nde</b> crees que vas, ehhh?<br/>
+	<u>No puedes ver esta p&aacute;gina</u>... &iquest;por qu&eacute;? Porque <b>no existe</b>!<br/>
+	&iquest;Te perdiste? Mejor <b>revisa la URL</b> que intestas acceder.
+	<br/><br/>
+	&mdash;
+	<br/><br/>
+	Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para ir a la p&aacute;gina de inicio.<br/>
+	{% crearEnlaceContacto %}
+	
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

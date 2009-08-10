@@ -1,0 +1,67 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/usuarios/contrasena_modificar.html
+Julian Perez
+Ultima modificacion: Mayo 13 de 2009, 10:33
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+   modificar mi contrase&ntilde;a
+{% endblock %}
+
+{% block importarScripts %}
+	{% cargarFuncionJS "otorgarFoco" "id_nuevaContrasena1" %}
+{% endblock %}
+
+{% block contenido %}
+
+   <p class="p_textoTitulo encabezado">
+		Modificar mi contrase&ntilde;a
+   </p>
+
+	{% if exitoOperacion %}
+		{% crearMensajeEstadoExito "&iexcl;Sin problemas!<br/>Tu contrase&ntilde;a fue modificada.<br/>Satisfactoriamente." %}
+	{% endif%}			
+	Esta es tu llave. Es &uacute;nica y personal.<br/>
+	Que garantiza la seguridad, privacidad y veracidad de tu cuenta de usuario.<br/>
+	Por favor... elige bien!<br/>
+	<br/>
+	{% if formulario %}
+		Para establecer tu nueva contrase&ntilde;a, diligencia el formulario a continuaci&oacute;n<br/>
+		<br/>	
+		{% if errorOperacion %}
+			{% crearMensajeEstadoError errores_errorFormulario %}
+		{% endif%}		
+		<div class="div_cuadroInterno">
+			<form action="{% url enlace_modificarContrasena %}" method="post" onSubmit="return validarFormulario_completo()">
+				{{ formulario.as_p }}
+				<input class="input_boton" type="submit" value="modificar mi contrase&ntilde;a"/>
+			</form>
+		</div>
+		<p class="p_textoTitulo sugerencia">
+			Para tener en cuenta
+		</p>
+		<ul>
+			<li>Todos los campos son <u>obligatorios</u>.</li>
+			<li>La nueva contrase&ntilde;a debe tener <u>por lo menos 5 caracteres</u> de longitud.</li>
+			<li>Es indispensable (y evidente) que los campos <i>Nueva contrase&ntilde;a</i> y <i>Nueva contrase&ntilde;a (otra vez)</i> <u>deben coincidir</u>.</li>
+		</ul>
+	{% endif %}
+	<br/>
+	&mdash;
+	<br/><br/>
+	Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para regresar a la p&aacute;gina de inicio.<br/>
+	O {% crearEnlace "enlace_mostrarPerfil_principal" "" "" "" "mi perfil: resumen" "aqu&iacute;" %} para regresar a la p&aacute;gina principal de tu perfil.
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

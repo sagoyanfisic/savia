@@ -1,0 +1,30 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/correo/comprobanteContacto_mensaje.html
+Julian Perez
+Ultima modificacion: Agosto 02 de 2009, 10:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "correo/base.html" %}
+
+{% block tituloMensaje %}
+	Comprobante de contacto
+{% endblock %}
+
+{% block contenido %}
+	Este mensaje ha llegado hasta aqu&iacute; porque enviaste un mensaje de contacto al administrador.<br/>
+	No te preocupes...<br/>
+	La siguiente s&oacute;lo es una copia de dicho mensaje.<br/>
+	<br/>
+	&mdash;<br/>
+	<b>Fecha y hora:</b> {{ fechaHoraActual|date:"j \de F \de Y, \a \l\a\s g:iA" }}<br/>
+	{{ contenidoMensaje_html|safe }}
+	<br/>&mdash;
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

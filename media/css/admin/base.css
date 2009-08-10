@@ -1,0 +1,127 @@
+/*
+----------------------------------------------------------------------
+---
+savia/media/css/admin/base.css
+Julian Perez
+Ultima modificacion: Abril 24 de 2009, 22:36
+---
+----------------------------------------------------------------------
+*/
+
+
+
+/* ---------------------------------------------------------------------- */
+/*
+Paleta de colores:
+- Azul oscuro: #1E2444
+- Verde fondo logo: #808000
+- Azul claro: #90C0D8
+- Verde oliva: #486030
+- Amarillo claro: #F5F3BF
+- Verde oliva 2: #90A860
+- Cafe: #804000
+*/
+
+body
+{
+	font-family: "Helvetica", sans-serif;
+	background: #CCCCCC url(../img/savia_fondo.png) repeat-x fixed top left;
+	font-size: 0.7em;
+}
+
+#div_menuLateral, .div_separadorVertical
+{
+	display: none;
+}
+
+#content
+{
+	width: inherit;
+	padding: 0em;
+	margin: 0em;
+}
+
+.breadcrumbs
+{
+	padding: 10px;
+   margin: 0px auto 20px auto;
+}
+
+#content-main
+{
+	width: 100%;
+}
+
+#changelist
+{
+	width: auto;
+	height: auto;
+}
+
+#changelist-filter
+{
+	width: 23%;
+	height: 100%;
+	z-index: auto;
+}
+
+#toolbar
+{
+	width: 100%;
+	margin: 0em;
+}
+
+#changelist table
+{
+	width: 77%;
+}
+
+#changelist .paginator
+{
+	width: auto;
+}
+
+a:link, a:hover, a:visited
+{
+	color: #804000;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: #90C0D8;
+	text-decoration: underline;
+}
+
+h1
+{
+	margin-bottom: 20px;
+	color: #486030;
+	font-size: 1.33em;
+	font-weight: bold;
+}
+
+ul.messagelist
+{
+	width: auto;
+	margin: 20px auto 0px auto;
+	background-color: #F5F3BF;
+	border: #009900 solid 3px;
+}
+
+ul.messagelist li
+{
+	margin: 0px auto 0px auto;
+	background-color: #F5F3BF;
+	border: none; 
+	text-align: center;
+	font-size: 12px;
+	font-weight: bold; 
+}
+
+caption
+{
+	width: 100%;
+}
+
+/* ---------------------------------------------------------------------- */

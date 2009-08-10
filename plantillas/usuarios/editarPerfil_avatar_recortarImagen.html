@@ -1,0 +1,72 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/usuarios/editarPerfil_avatar_recortarImagen.html
+Julian Perez
+Ultima modificacion: Mayo 11 de 2009, 10:33
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+   mi perfil: avatar
+{% endblock %}
+
+{% block importarEstilos %}
+	{% cargarCSS "usuarios/editarPerfil" %}
+{% endblock %}	
+
+{% block importarScripts %}
+	{% cargarJavascript "usuarios/editarPerfil" %}
+	{% cargarJavascript "jquery/jquery.imgareaselect-0.4.2.min" %}
+	{% actualizarCoordenadasImagen "imagenObjetivo" %}
+{% endblock %}
+
+{% block contenido %}
+
+   {% include "usuarios/enlaces_menuPerfil.html" %}
+
+   <p class="p_textoTitulo encabezado">
+		Mi perfil: avatar
+   </p>
+	
+	Listo. Elegiste la imagen en vez de las palabras.<br/>
+	Sabia decisi&oacute;n.<br/>
+	Ahora, es s&oacute;lo cuesti&oacute;n de enfocar la mejor zona.<br/><br/>
+	Para recortar la imagen actual y establecerla como tu nuevo avatar, selecciona una regi&oacute;n de al menos 96x96 pixeles<br/>
+	<br/>
+	{% if formulario %}
+		Para establecer tu avatar, elige una imagen almacenada en alg&uacute;n lugar de este computador<br/>
+		<br/>	
+		{% if errorOperacion %}
+			{% crearMensajeEstadoError errores_errorFormulario %}
+		{% endif%}	
+		<div class="div_cuadroInterno">
+			<form action="{% url enlace_editarPerfil_avatar_recortarImagen %}" method="post" onSubmit="return verificarValidezImagen()">
+				<p>
+					<img src="{{ avatarActual.imagen.url }}" id="imagenObjetivo"/>
+				</p>
+				{{ formulario.as_p }}
+				<input type="hidden" name="editarPerfil_avatar_validez" value="esInvalida"/>
+				<input type="submit" class="input_boton" value="establecer como mi avatar"/>
+				<br/><br/>
+				Si est&aacute;s arrepentido de tu elecci&oacute;n y deseas una mejor instant&aacute;nea que te represente, 
+				haz clic {% crearEnlace "enlace_editarPerfil_avatar" "" "" "" "mi perfil: avatar" "aqu&iacute;" %} y elige otra imagen.
+			</form>
+		</div>
+	{% endif %}
+	<br/>
+	&mdash;
+	<br/><br/>
+	Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para regresar a la p&aacute;gina de inicio.<br/>
+	O {% crearEnlace "enlace_mostrarPerfil_principal" "" "" "" "mi perfil: resumen" "aqu&iacute;" %} para regresar a la p&aacute;gina principal de tu perfil.	
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

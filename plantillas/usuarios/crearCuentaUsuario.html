@@ -1,0 +1,148 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/usuarios/nuevo.html
+Julian Perez
+Ultima modificacion: Marzo 10 de 2009, 10:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+   &iexcl;d&eacute;jala fluir!
+{% endblock %}
+
+{% block importarEstilos %}
+	{% cargarCSS "usuarios/crearCuentaUsuario" %}
+{% endblock %}
+
+{% block importarScripts %}
+	{% cargarJavascript "usuarios/crearCuentaUsuario" %}
+	{% cargarFuncionJS "otorgarFoco" "nombreElegido" %}
+	{% cargarFuncionJS "verificarNombreUsuario" "" %}
+{% endblock %}
+
+{% block contenido %}
+
+   <p class="p_textoTitulo encabezado">
+		&iexcl;D&eacute;jala fluir!
+   </p>
+
+	{% if formulario %}
+		&iexcl;Hola!<br/>
+		Queremos que seas uno m&aacute;s...<br/>
+		Uno m&aacute;s que deja fluir la sabia savia.<br/>
+		<br/>	
+		Para crear tu cuenta de usuario, diligencia el formulario a continuaci&oacute;n<br/>
+		<br/>
+		{% if errorOperacion %}
+			{% crearMensajeEstadoError errores_errorFormulario %}
+		{% endif%}
+		<div class="div_cuadroInterno">
+			<form action="{% url enlace_crearCuentaUsuario %}" method="post" onSubmit="return validarFormulario_completo()">
+				<fieldset>
+					<legend>cuenta de usuario</legend>
+					<p>
+						{% if formulario.nombreElegido.errors %}
+							<ul class="errorlist"><li>{{ formulario.nombreElegido.errors }}</li></ul>
+						{% endif %}							
+						<label for="id_nombreElegido">Nombre de usuario:</label>
+						{{ formulario.nombreElegido }}			
+						<span id="span_verificarNombreElegido"></span>
+					</p>
+					<p>
+						{% if formulario.contrasena1.errors %}
+							<ul class="errorlist"><li>{{ formulario.contrasena1.errors }}</li></ul>
+						{% endif %}							
+						<label for="id_contrasena1">Contrase&ntilde;a:</label>
+						{{ formulario.contrasena1 }}	
+					</p>
+					<p>
+						{% if formulario.contrasena2.errors %}
+							<ul class="errorlist"><li>{{ formulario.contrasena2.errors }}</li></ul>
+						{% endif %}		
+						<label for="id_contrasena2">Contrase&ntilde;a (otra vez):</label>
+						{{ formulario.contrasena2 }}		
+					</p>			
+				</fieldset>
+				<fieldset>
+					<legend>datos personales</legend>
+					<p>
+						{% if formulario.nombres.errors %}
+							<ul class="errorlist"><li>{{ formulario.nombres.errors }}</li></ul>
+						{% endif %}						
+						<label for="id_nombres">Nombres:</label>
+						{{ formulario.nombres }}
+					</p>
+					<p>
+						{% if formulario.apellidos.errors %}
+							<ul class="errorlist"><li>{{ formulario.apellidos.errors }}</li></ul>
+						{% endif %}						
+						<label for="id_apellidos">Apellidos:</label>
+						{{ formulario.apellidos }}
+					</p>					
+					<p>
+						{% if formulario.correo.errors %}
+							<ul class="errorlist"><li>{{ formulario.correo.errors }}</li></ul>
+						{% endif %}						
+						<label for="id_correo">Correo electr&oacute;nico:</label>
+						{{ formulario.correo }}				
+					</p>
+				</fieldset>
+				<fieldset>
+					<legend>verificaci&oacute;n</legend>
+					{% cargarImagen rutaCaptcha "" "" "captcha!" "captcha!" %}<br/>
+					<p>
+						{% if errorCaptcha %}
+							<ul class="errorlist"><li>El c&oacute;digo de seguridad es incorrecto</li></ul>
+						{% endif %}								
+						<label for="id_captchaDigitado">C&oacute;digo de seguridad:</label>
+						<input id="id_captchaDigitado" name="captchaDigitado" type="text" size="5" maxlength="5" value=""/>
+						<input id="id_captchaGenerado" name="captchaGenerado" type="hidden" value="{{ captchaGenerado }}"/>
+					</p>
+				</fieldset>			
+				<br/>
+				<input class="input_boton" type="submit" value="crear mi cuenta de usuario" />
+			</form>
+		</div>
+		<p class="p_textoTitulo sugerencia">
+			Para tener en cuenta
+		</p>
+		<ul>
+			<li>Todos los campos son <u>obligatorios</u>.</li>
+			<li>El nombre de usuario que eligas y la contrase&ntilde;a deben tener <u>por lo menos 5 caracteres</u> de longitud.</li>
+			<li>Adem&aacute;s, el nombre de usuario debe tener <u>como m&aacute;ximo 30 caracteres</u> de longitud.</li>
+			<li>Es indispensable (y evidente) que los campos <i>Contrase&ntilde;a</i> y <i>Contrase&ntilde;a (otra vez)</i> <u>deben coincidir</u>.</li>
+			<li>Los nombres y apellidos, al igual que la direcci&oacute;n de correo electr&oacute;nico, son campos que <u>no se pueden modificar despu&eacute;s</u> sin autorizaci&oacute;n del administrador.</li>
+			<li>Digita una direcci&oacute;n de correo electr&oacute;nico <u>que sea v&aacute;lida, que exista y que no haya sido registrada con anterioridad</u>.</li>
+			<li>El <i>C&oacute;digo de seguridad</i> <u>no es sensible</u> a la letras min&uacute;sculas o may&uacute;sculas y algunas veces tambi&eacute;n contiene <u>n&uacute;meros</u>.</li>
+		</ul>
+		<br/>
+		&mdash;
+		<br/><br/>
+		Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para regresar a la p&aacute;gina de inicio.			
+	{% else %}
+		{% crearMensajeEstadoExito "&iexcl;Listo!<br/>Tu cuenta de usuario fue creada.<br/>Satisfactoriamente." %}
+		Tu cuenta fue creada... pero <b>a&uacute;n no</b> la puedes utilizar.<br/>
+		Y dir&aacute;s... <b><i>&iquest;por qu&eacute; no?</i></b><br/>
+		Porque primero <b>necesitamos que la actives</b>, confirmando tu direcci&oacute;n de correo electr&oacute;nico.<br/>
+		<br/>
+		Ahora, lo siguiente es f&aacute;cil: <b>revisa</b> tu correo electr&oacute;nico.<br/>
+		<b>Busca el mensaje</b> que acaba de ser enviado (que <i>puede</i> demorarse alg&uacute;n tiempo en llegar).<br/>
+		Para continuar con este proceso, <b>sigue las instrucciones</b> que encuentres.
+		<br/><br/>
+		&mdash;
+		<br/><br/>
+		Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para regresar a la p&aacute;gina de inicio.<br/>
+		O {% crearEnlace "enlace_crearCuentaUsuario" "" "" "" "&iexcl;d&eacute;jala fluir!" "aqu&iacute;" %} para crear una nueva cuenta de usuario otra vez.				
+	{% endif %}		
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

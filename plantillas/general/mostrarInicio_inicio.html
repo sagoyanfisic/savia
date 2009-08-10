@@ -1,0 +1,78 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantilas/general/inicio.html
+Julian Perez
+Ultima modificacion: Mayo 04 de 2009, 10:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+	&iexcl;bienvenid{% ifequal usuarioActual.get_profile.sexo "f" %}a{% else %}o{% endifequal %}!
+{% endblock %}
+
+{% block importarEstilos %}
+	{% cargarCSS "general/mostrarInicio" %}
+{% endblock %}
+
+{% block contenido %}
+
+	<p class="p_textoTitulo resaltado centrado">
+		&iexcl;Hola {{ usuarioActual.first_name }}!
+	</p>
+	
+	<div id="div_introduccionInicio">
+		{% ifequal usuarioActual.get_profile.numeroVisitas 1 %}
+			Lo dicho: &iexcl; <b>eres uno m&aacute;s</b>!<br/>
+			&iexcl;Y esta es la <b>primera vez</b> que inicias sesi&oacute;n!<br/>
+			&iexcl;<b>Bienvenido</b>!<br/>
+		{% else %}
+			{% if fechaUltimaVisita %}
+				Tu <b>&uacute;ltima visita</b> hab&iacute;a sido {% mostrarFechaHoraContextual fechaUltimaVisita %} ({{ fechaUltimaVisita|date:"j \de F \de Y, \a \l\a\s g:iA" }}).<br/>
+			{% else %}
+				La <b>sesi&oacute;n actual</b> inici&oacute; {% mostrarFechaHoraContextual usuarioActual.last_login %} ({{ usuarioActual.last_login|date:"j \de F \de Y, \a \l\a\s g:iA" }}).<br/>
+			{% endif %}			
+			Y con esta, ya son <b>{{ usuarioActual.get_profile.numeroVisitas }}</b> las veces que has iniciado sesi&oacute;n.<br/>
+			Por cierto, te <b>registraste</b> {% mostrarFechaHoraContextual usuarioActual.date_joined %} ({{ usuarioActual.date_joined|date:"j \de F \de Y, \a \l\a\s g:iA" }}).<br/>
+		{% endifequal %}
+	</div>
+	<br/><br/>
+	<p class="p_textoTitulo centrado">
+		Esto es savia
+	</p>
+	<div class="div_cuadroInterno">
+		<br/>
+		<div id="div_enlacesInicio">
+			<div id="div_enlacesArriba">
+				<div id="div_enlaceArribaIzqueirda">
+					{% crearEnlaceImagen "enlace_mostrarPerfil_principal" "" "" "" "configuraci&oacute;n personal" "enlace_personal.png" "" "" %}<br/>
+					configuraci&oacute;n personal
+				</div>
+				<div id="div_enlaceArribaDerecha">
+					{% crearEnlaceImagen "enlace_mostrarListaAmigos" "" "" "" "centro de amistades" "enlace_relaciones.png" "" "" %}<br/>
+					relaciones
+				</div>
+			</div>
+			<div id="div_enlacesAbajo">
+				<div id="div_enlaceAbajoIzqueirda">
+					{% crearEnlaceImagen "enlace_mostrarListaAmigos" "" "" "" "mi espacio" "enlace_miespacio.png" "" "" %}<br/>
+					mi espacio
+				</div>
+				<div id="div_enlaceAbajoDerecha">
+					{% crearEnlaceImagen "enlace_mostrarListaAmigos" "" "" "" "centro de estad&iacute;sticas" "enlace_estadisticas.png" "" "" %}<br/>
+					estad&iacute;sticas	
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

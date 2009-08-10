@@ -1,0 +1,156 @@
+/*
+----------------------------------------------------------------------
+---
+savia/media/css/usuarios/editarPerfil.css
+Julian Perez
+Ultima modificacion: Abril 24 de 2009, 22:36
+---
+----------------------------------------------------------------------
+*/
+
+
+
+/* ---------------------------------------------------------------------- */
+
+#img_sexo
+{
+	padding: 0em 0.33em 0em 0em;
+	position: relative;
+	top: 7px;
+}
+
+.ui-datepicker-trigger
+{
+	width: 16px;
+	height: 16px;
+	position: relative;
+	top: 4px;
+	margin: 0px 5px 0px 5px;
+	padding: 0px;
+}
+
+#ui-datepicker-div
+{
+	display: none;
+}
+
+#img_avatar
+{
+	border: #1E2444 solid 2px;
+}
+
+#div_avatarActual
+{
+	padding: 0em 1em 1em 1em;
+	margin: 0em;
+	border-top:  #1E2444 solid 2px;
+	border-bottom:  #1E2444 solid 2px;
+}
+
+div.hidden-image
+{
+   overflow: hidden;
+   height: 1px;
+   width: 1px;
+}
+
+div.container
+{
+   margin-left: 5px;
+   margin-top: 5px;
+}
+
+div.image-cropper
+{
+   background-color: black;
+   position: relative;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   width: 1px;
+   height: 1px;
+   overflow: hidden;
+   cursor: crosshair;
+}
+
+div.image-cropper div.image
+{
+   z-index: 101;
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   opacity: 0.5;
+   filter: alpha(opacity=50);
+}
+
+div.selection
+{
+   position: absolute;
+   border: 1px dashed white;
+   z-index: 103;
+   overflow: hidden;
+}
+
+div.selection img
+{
+   position: absolute;
+}
+
+div.selection div.size
+{
+   position: absolute;
+   font-size: 10px;
+   font-family: helvetica;
+   color: white;
+   text-align: right;
+   top: 2px;
+   right: 2px;
+}
+
+div.instruction
+{
+   position: absolute;
+   color: white;
+   font-size: 2em;
+   font-family: helvetica;
+   top: 50%;
+   width: 100%;
+   text-align: center;
+   z-index: 102;
+}
+
+div.warning
+{
+   color: red;
+}
+
+.crosshair
+{
+   cursor: crosshair;
+}
+
+.move
+{
+   cursor: move;
+}
+
+div.debug
+{
+   float: right;
+   background-color: #DDDDDD;
+   border: 1px solid black;
+   padding: 10px;
+}
+
+select#id_pais > option[disabled=disabled]
+{
+	font-weight: bold;
+	background: #ECECEC;
+}
+
+#div_mapaUbicacion
+{
+   height: 23em;
+   border: #90A860 solid 2px;
+}
+
+/* ---------------------------------------------------------------------- */

@@ -1,0 +1,109 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/usuarios/editarPerfil_informacion.html
+Julian Perez
+Ultima modificacion: Julio 24 de 2009, 11:08
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+	mi perfil: informaci&oacute;n personal
+{% endblock %}
+
+{% block importarEstilos %}
+	{% cargarCSS "usuarios/editarPerfil" %}
+{% endblock %}
+
+{% block importarScripts %}
+	{% cargarJavascript "usuarios/editarPerfil" %}
+	{% mostrarCalendario "id_fechaNacimiento" %}
+	{% cargarFuncionJS "cargarImagenGenero" generoActual %}
+	{% cargarFuncionJS "cambiarImagenGenero" "" %}
+	{% cargarFuncionJS "otorgarFoco" "id_sexo" %}
+{% endblock %}
+
+{% block contenido %}
+
+   {% include "usuarios/enlaces_menuPerfil.html" %}
+
+	<p class="p_textoTitulo encabezado">
+		Mi perfil: informaci&oacute;n personal
+	</p>
+
+	{% if exitoOperacion %}
+		{% crearMensajeEstadoExito "&iexcl;Sin problemas!<br/>Tu informaci&oacute;n personal fue modificada.<br/>Satisfactoriamente." %}
+	{% endif%}		
+	La informaci&oacute;n personal de tu perfil es muy importante.<br/>
+	Es lo que los dem&aacute;s podr&aacute;n saber de t&iacute; a trav&eacute;s de tu perfil p&uacute;blico.<br/>
+	Si quieres ser conocido... &iexcl;esta es tu carta de presentaci&oacute;n!<br/>
+	<br/>
+	{% if formulario %}
+	  Para establecer tu informaci&oacute;n personal, diligencia el formulario a continuaci&oacute;n<br/>
+	<br/>	
+		{% if errorOperacion %}
+			{% crearMensajeEstadoError errores_errorFormulario %}
+		{% endif%}
+		<div class="div_cuadroInterno">
+			<form action="{% url enlace_editarPerfil_informacion %}" method="post" onSubmit="return validarFormulario_completo()">
+				<p>
+					{% if formulario.sexo.errors %}
+						<ul class="errorlist"><li>{{ formulario.sexo.errors }}</li></ul>
+					{% endif %}					
+					<label for="id_sexo">Sexo:</label>
+					<img  id="img_sexo"/>
+					{{ formulario.sexo }}
+				</p>
+				<p>
+					{% if formulario.fechaNacimiento.errors %}
+						<ul class="errorlist"><li>{{ formulario.fechaNacimiento.errors }}</li></ul>
+					{% endif %}	
+					<label for="id_fechaNacimiento">Fecha de nacimiento:</label>
+					<input id="id_fechaNacimientoTexto" class="noCapturar" type="text" size="50" value='{{ fechaNacimientoActual|date:"l"|title }} {{ fechaNacimientoActual|date:"j \de F \de Y" }}'/>
+					&nbsp;
+					{{ formulario.fechaNacimiento }}
+				</p>
+				<p>
+					{% if formulario.url.errors %}
+						<ul class="errorlist"><li>{{ formulario.url.errors }}</li></ul>
+					{% endif %}	
+					<label for="id_url">URL personal:</label>
+					{{ formulario.url }}
+				</p>
+				<p>
+					{% if formulario.acerca.errors %}
+						<ul class="errorlist"><li>{{ formulario.acerca.errors }}</li></ul>
+					{% endif %}					
+					<label for="id_acerca">Acerca de m&iacute;:</label>
+					{{ formulario.acerca }}
+				</p>
+				<input class="input_boton" type="submit" value="modificar mi informaci&oacute;n personal"/>
+			</form>
+		</div>
+		<p class="p_textoTitulo sugerencia">
+			Para tener en cuenta
+		</p>
+		<ul>
+			<li>Todos los campos son <u>obligatorios</u>.</li>
+			<li>Para establacer tu <i>Fecha de nacimiento</i>, haz clic en la <u>imagen</u> para mostrar/ocultar el calendario.</li>
+			<li>El <u>formato v&aacute;lido</u> para la fecha es <i>aaaa-mm-dd</i>.</li>
+			<li>Oculta tu sexo en tu perfil p&uacute;blico <u>seleccionando "sin establecer"</u> como tu <i>Sexo</i>.</li>
+			<li>Oculta tu edad en tu perfil p&uacute;blico <u>seleccionando la fecha de hoy</u> como tu <i>Fecha de nacimiento</i> (al menos una vez al a&ntilde;o).</li>
+		</ul>
+	{% endif %}
+	<br/>
+	&mdash;
+	<br/><br/>	
+	Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para regresar a la p&aacute;gina de inicio.<br/>
+	O {% crearEnlace "enlace_mostrarPerfil_principal" "" "" "" "mi perfil: resumen" "aqu&iacute;" %} para regresar a la p&aacute;gina principal de tu perfil.
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

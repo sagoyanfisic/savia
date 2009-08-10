@@ -1,0 +1,63 @@
+/*
+----------------------------------------------------------------------
+---
+savia/media/css/relaciones/mostrarMensajes.css
+Julian Perez
+Ultima modificacion: Julio 24 de 2009, 22:36
+---
+----------------------------------------------------------------------
+*/
+
+
+
+/* ---------------------------------------------------------------------- */
+
+#table_bandejaMensajes
+{
+	width: 100%;
+	padding: 1em;
+	background: #F7F7F7;
+	border: #90A860 solid 2px;
+	text-align: center;
+}
+
+#tr_encabezadoBandeja
+{
+	height: 2em;
+	background: #804000;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+#th_columnaTitulo
+{
+	width: 43%;
+}
+
+#th_columnaUsuario
+{
+	width: 23%;
+}
+
+#th_columnaFechaHora
+{
+	width: 33%;
+}
+
+.tr_mensajeNuevo
+{
+	font-weight: bold;
+}
+
+.tr_mensajeViejo
+{
+	font-weight: normal;
+}
+
+.img_opcionesMensaje
+{
+	vertical-align: middle;
+	border: none;
+}
+
+/* ---------------------------------------------------------------------- */

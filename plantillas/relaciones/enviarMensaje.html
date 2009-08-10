@@ -1,0 +1,77 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/relaciones/enviarMensaje.html
+Julian Perez
+Ultima modificacion: Mayo 13 de 2009, 10:33
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+   enviar un mensaje
+{% endblock %}
+
+{% block importarEstilos %}
+	{% if usuarioActual.is_staff %}{% cargarCSS "admin/base" %}{% endif %}
+{% endblock %}
+
+{% block contenido %}
+
+	{% include "relaciones/enlaces_menuMensajes.html" %}
+
+   <p class="p_textoTitulo encabezado">
+		Enviar un mensaje
+   </p>
+
+	{% if formulario %}	
+		Esta es tu ventana de comunicaci&oacute;n con otros usuarios.<br/>
+		Espec&iacute;ficamente, con tus amigos.<br/>
+		No los olvides... escr&iacute;beles seguido.<br/>
+		<br/>
+		{% if formulario %}
+			Para enviar un mensaje, diligencia el formulario a continuaci&oacute;n<br/>
+			<br/>	
+			{% if errorOperacion %}
+				{% crearMensajeEstadoError errores_errorFormulario %}
+			{% endif%}
+			{% if formulario.fueCreado %}
+				<div class="div_cuadroInterno">
+					<form action="{% url enlace_enviarMensaje %}" method="post" onSubmit="return validarFormulario_completo()">
+						{{ formulario.as_p }}
+						<input class="input_boton" type="submit" value="enviar el mensaje"/>
+					</form>
+				</div>
+				<p class="p_textoTitulo sugerencia">
+					Para tener en cuenta
+				</p>
+				<ul>
+					<li>Todos los campos son <u>obligatorios</u>.</li>
+					<li>El campo <i>T&iacute;tulo</i> debe tener <u>como m&aacute;ximo 55 caracteres</u> de longitud.</li>
+					<li>El campo <i>Contenido</i> debe tener <u>como m&aacute;ximo 555 caracteres</u> de longitud.</li>
+				</ul>
+			{% else %}
+				{% crearMensajeEstadoAlerta "&iexcl;Ooops!<br/>En estos momentos no puedes enviar mensajes.<br/>No tienes amistades establecidas para comunicarte." %}
+			{% endif %}
+		{% endif %}
+	{% else %}
+		{% crearMensajeEstadoExito "&iexcl;Listo!<br/>Tu mensaje fue enviado.<br/>Satisfactoriamente." %}
+		Y un <b>nuevo mensaje</b> sale al encuentro.<br/>
+		Al encuentro de su destino... o de su <b>usuario destino</b>.<br/>
+		Hecho esto, basta con que <b>esperes</b> una respuesta oportuna.<br/>
+	{% endif %}		
+	<br/>
+	&mdash;
+	<br/><br/>
+	Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para regresar a la p&aacute;gina de inicio.<br/>
+	O {% crearEnlace "enlace_mostrarMensajes_recibidos" "" "" "" "mis mensajes recibidos" "aqu&iacute;" %} para regresar a tus mensajes recibidos.
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

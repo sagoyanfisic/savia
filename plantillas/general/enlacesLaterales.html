@@ -1,0 +1,27 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/general/enlacesLaterales.html
+Julian Perez
+Ultima modificacion: Julio 25 de 2009, 10:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% load etiquetas %}
+
+{% if usuarioActual.is_anonymous %}
+	<div id="div_temaOriginal" title="tema original | {{ nombreAplicacion }}">&nbsp;</div>
+{% else %}
+	<div id="div_coloresDisponibles">
+		<div class="div_enlaceLateral" onClick="return mostrarSeleccionColor();">{% cargarImagen "savia_temas.gif" "" "" "elige tu tema" "elige tu tema" %}</div>
+		{% mostrarColoresDisponibles %}
+	</div>	
+{% endif %}
+<div class="div_enlaceLateral">{% crearEnlaceImagen "enlace_mostrarAyuda" "" "" "" "ayuda" "savia_ayuda.gif" "" "img_enlaceLateral" %}</div>
+<div class="div_enlaceLateral">{% crearEnlaceImagen "enlace_mostrarAcercade" "" "" "" "acerca de" "savia_acercade.gif" "" "img_enlaceLateral" %}</div>
+
+	
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

@@ -1,0 +1,18 @@
+-----------------------------------------
+Respuesta del administrador
+-----------------------------------------
+
+Hola {{ usuarioActual_nombre }}!
+Este mensaje ha llegado hasta aqui porque enviaste un mensaje de contacto al administrador.
+No te preocupes... aqui esta tu respuesta.
+
+{{ contenidoMensaje_texto }}
+
+Atentamente
+Administrador del sistema
+
+Sigue disfrutando!
+
+---
+
+sabia savia por mi cuerpo

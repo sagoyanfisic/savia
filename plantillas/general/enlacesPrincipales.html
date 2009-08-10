@@ -1,0 +1,61 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/general/enlacesPrincipales.html
+Julian Perez
+Ultima modificacion: Julio 25 de 2009, 10:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% load etiquetas %}
+
+{% if usuarioActual.is_anonymous %}
+	<a class="a_enlaceSeccion actual" title="inicio | {{ nombreAplicacion }}" href="{% url enlace_mostrarInicio %}">
+		inicio</a>
+{% else %}
+	{% if usuarioActual.is_staff %}
+		<div class="div_flotarIzquierda">
+			<a class="a_enlaceSeccion {% paginaActiva peticionActual '/admin/' %}" title="administraci&oacute;n | {{ nombreAplicacion }}" href="{% url enlace_mostrarInicio %}">
+				administraci&oacute;n</a>
+			<a class="a_enlaceSeccion {% paginaActiva peticionActual '/mensajes/' %}" title="centro de mensajes | {{ nombreAplicacion }}" href="{% url enlace_mostrarMensajes_recibidos %}">
+				mensajes {% if contadorMensajesNuevos %}({{ contadorMensajesNuevos }}){% endif %}</a>	
+			<a class="a_enlaceSeccion {% paginaActiva peticionActual '/amistades/busqueda/' %}" title="administraci&oacute;n | {{ nombreAplicacion }}" href="{% url enlace_busquedaUsuarios %}">
+				b&uacute;squeda de usuarios</a>
+		</div>
+		<div class="div_flotarDerecha">			
+			<a class="a_enlaceSeccion" title="modificar mi contrase&ntilde;a | {{ nombreAplicacion }}" href="{% url enlace_sitioAdministracion parametros %}password_change/">
+				modificar mi contrase&ntilde;a</a>
+			<a class="a_enlaceSeccion" title="terminar sesi&oacute;n | {{ nombreAplicacion }}" href="/" onClick="return confirmacion_terminarSesion()">
+				terminar sesi&oacute;n</a>	
+		</div>
+		<div class="div_limpiarZona"></div>
+	{% else %}
+		<div class="div_flotarIzquierda">
+			<a class="a_enlaceSeccion {% paginaActiva peticionActual '^/$' %}" title="inicio | {{ nombreAplicacion }}" href="{% url enlace_mostrarInicio %}">
+				inicio</a>
+			<a class="a_enlaceSeccion {% paginaActiva peticionActual '/mostrarEspacio/' %}" title="mi espacio | {{ nombreAplicacion }}" href="{% url enlace_mostrarEspacio %}">
+				mi espacio</a>
+			<a class="a_enlaceSeccion {% paginaActiva peticionActual '/subirArchivo/$' %}" title="subir un archivo | {{ nombreAplicacion }}" href="{% url enlace_subirArchivo %}">
+				subir un archivo</a>
+			<a class="a_enlaceSeccion {% paginaActiva peticionActual '/mensajes/' %}" title="centro de mensajes | {{ nombreAplicacion }}" href="{% url enlace_mostrarMensajes_recibidos %}">
+				mensajes{% if contadorMensajesNuevos %} ({{ contadorMensajesNuevos }}){% endif %}</a>
+			<a class="a_enlaceSeccion {% paginaActiva peticionActual '/amistades/' %}" title="centro de amistades | {{ nombreAplicacion }}" href="{% url enlace_mostrarSolicitudesAmistad %}">
+				amistades{% if contadorSolicitudesAmistadNuevas %} ({{ contadorSolicitudesAmistadNuevas }}){% endif %}</a>
+		</div>
+		<div class="div_flotarDerecha">
+			{{ usuarioActual.username }}
+			&nbsp;|&nbsp;
+			<a class="a_enlaceSeccion {% paginaActiva peticionActual '^/usuarios/' %}" title="configurac&oacute;n personal | {{ nombreAplicacion }}" href="{% url enlace_mostrarPerfil_principal %}">
+				configuraci&oacute;n personal</a>
+			<a class="a_enlaceSeccion" title="terminar sesi&oacute;n | {{ nombreAplicacion }}" href="/" onClick="return confirmacion_terminarSesion()">
+				terminar sesi&oacute;n</a>	
+		</div>
+		<div class="div_limpiarZona"></div>
+	{% endif %}	
+{% endif %}
+
+	
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

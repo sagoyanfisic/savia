@@ -1,0 +1,93 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/usuarios/editarPerfil_ubicacion.html
+Julian Perez
+Ultima modificacion: Mayo 13 de 2009, 10:33
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+	mi perfil: ubicaci&oacute;n
+{% endblock %}
+
+{% block importarEstilos %}
+	{% cargarCSS "usuarios/editarPerfil" %}
+{% endblock %}
+
+{% block importarScripts %}
+	{% cargarJavascript "usuarios/editarPerfil" %}
+{% endblock %}
+
+{% block contenido %}
+
+   {% include "usuarios/enlaces_menuPerfil.html" %}
+	
+	<p class="p_textoTitulo encabezado">
+		Mi perfil: ubicaci&oacute;n
+	</p>
+
+	{% if exitoOperacion %}
+		{% crearMensajeEstadoExito "&iexcl;Sin problemas!<br/>Tu ubicaci&oacute;n fue modificada.<br/>Satisfactoriamente." %}
+	{% endif%}			
+	Todos tenemos nuestro lugar en el mundo.<br/>
+	Donde la gente habla, se viste e interact&uacute;a con los dem&aacute;s de una manera particular.<br/>
+	Estar ubicado es fundamental... y dice mucho de tu manera de ser!<br/>
+	<br/>
+	{% if formulario %}
+		Para establecer tu ubicaci&oacute;n, diligencia el formulario a continuaci&oacute;n<br/>
+	<br/>	
+		{% if errorOperacion %}
+			{% crearMensajeEstadoError errores_errorFormulario %}
+		{% endif%}
+		<div class="div_cuadroInterno">
+			<form action="{% url enlace_editarPerfil_ubicacion %}" method="post" onSubmit="return validarFormulario_completo()">
+				<p>
+					<label for="id_pais">Pa&iacute;s:</label>
+					{{ formulario.pais }}
+				</p>
+				<p>
+					<label for="id_lugar">Lugar:</label>
+					{{ formulario.lugar }}
+				</p>
+				<div class="div_campoOculto">
+					{{ formulario.latitud }}
+					{{ formulario.longitud }}
+					<div class="div_campoOculto" id="div_llaveGoogleMaps">{{ llaveGoogleMaps }}</div>
+				</div>				
+				{% if llaveGoogleMaps %}
+					<div id="div_mapaUbicacion"></div>
+					<br/>
+				{% else %}
+					{% crearMensajeEstadoAlerta "Ahhh...<br/>El mapa de <i>Google Maps</i> no se pudo cargar.<br/>De todas formas, puedes gestionar tu ubicaci&oacute;n sin problema." %}
+				{% endif %}
+				<input class="input_boton" type="submit" value="modificar mi ubicaci&oacute;n" />
+			</form>
+		</div>
+		<p class="p_textoTitulo sugerencia">
+			Para tener en cuenta
+		</p>
+		<ul>
+			<li>Todos los campos son <u>obligatorios</u>.</li>
+			<li>Aunque establecer tu ubicaci&oacute;n <u>no es obligatorio</u>.</li>
+			<li>El mapa y los datos de la ubicaci&oacute;n seleccionada en el mapa (pa&iacute;s y regi&oacute;n) se obtienen utilizando <u>servicios web externos</u>.</li>
+			<li>Verifica siempre que el campo <i>Ciudad</i> s&oacute;lo contenga <u>caracteres v&aacute;lidos</u> ({% crearEnlace "http://es.wikipedia.org/wiki/ISO_8859-1" "" "" "" "ISO 8859-1" "ISO 8859-1" %}).</li>
+			<li>Oculta tu ubicaci&oacute;n en tu perfil p&uacute;blico <u>seleccionando el pa&iacute;s "-sin establecer-"</u> como tu <i>Ubicaci&oacute;n</i>.</li>
+		</ul>
+	{% endif %}		
+	<br/>
+	&mdash;
+	<br/><br/>
+	Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para regresar a la p&aacute;gina de inicio.<br/>
+	O {% crearEnlace "enlace_mostrarPerfil_principal" "" "" "" "mi perfil: resumen" "aqu&iacute;" %} para regresar a la p&aacute;gina principal de tu perfil.
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

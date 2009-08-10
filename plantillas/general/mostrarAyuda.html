@@ -1,0 +1,103 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/general/mostrarAyuda.html
+Julian Perez
+Ultima modificacion: Julio 28 de 2009, 10:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra%}
+	ayuda
+{% endblock %}
+
+{% block importarEstilos %}
+	{% cargarCSS "general/mostrarAyuda" %}
+{% endblock %}
+
+{% block contenido %}
+
+   <p class="p_textoTitulo encabezado">
+		Ayuda
+   </p>
+	
+   Bienvenido al centro de ayuda de <b>{{ nombreAplicacion }}</b>.<br/>
+	Estamos para resolver cualquier inquietud, solucionar problemas y recibir tus sugerencias.<br/>
+	As&iacute; que... adelante, &iexcl;y sigue disfrutando!<br/>
+   <br/>
+	Elige alguna de las dos opciones siguientes<br/>
+	<br/>
+	<div id="div_menuAyuda">
+		<p class="p_textoTitulo encabezado">
+			1. Contacto con el administrador
+		</p>
+		<i>&iquest;En qu&eacute; casos recurrir a esta opci&oacute;n?</i><br/>
+		Cuando tengas alg&uacute;n <u>problema</u> que requiera <b>soluci&oacute;n urgente</b>.<br/>
+		O tambi&eacute;n cuando desees <b>aportar sugerencias</b> para <u>mejorar</u> tu experiencia en el sistema.<br/>
+		<br/>
+		<b>Para contactar al administrador, haz clic {% crearEnlace "enlace_mostrarContacto" "" "" "" "contacto" "aqu&iacute;" %}</b>.
+		<br/><br/>
+		<p class="p_textoTitulo encabezado">
+			2. Preguntas m&aacute;s frecuentes (FAQ)
+		</p>
+		<i>&iquest;En qu&eacute; casos recurrir a esta opci&oacute;n?</i><br/>
+		Cuando necesites una <u>gu&iacute;a</u> de <b>referencia r&aacute;pida</b>.<br/>
+		Para <b>consultar</b> el <i>c&oacute;mo (how to)</i> de las <u>operaciones m&aacute;s comunes</u> del sistema.<br/>
+		<br/>
+		La gu&iacute;a de referencia r&aacute;pida se presenta a continuaci&oacute;n<br/>
+		<br/>
+		<div class="div_cuadroInterno">
+			<br/>
+			<ul>
+				<li>
+					<b><i>Pregunta</i></b><br/>
+					Respuesta
+				</li>
+				<br/>
+				<li>
+					<b><i>Pregunta</i></b><br/>
+					Respuesta
+				</li>
+				<br/>
+				<li>
+					<b><i>Pregunta</i></b><br/>
+					Respuesta
+				</li>
+				<br/>
+				<li>
+					<b><i>Pregunta</i></b><br/>
+					Respuesta
+				</li>
+				<br/>
+				<li>
+					<b><i>Pregunta</i></b><br/>
+					Respuesta
+				</li>
+				<br/>
+				<li>
+					<b><i>Pregunta</i></b><br/>
+					Respuesta
+				</li>
+				<br/>
+				<li>
+					<b><i>Pregunta</i></b><br/>
+					Respuesta
+				</li>			
+			</ul>
+		</div>
+	</div>
+	<br/>
+	&mdash;
+	<br/><br/>
+	Haz clic {% crearEnlace "enlace_mostrarInicio" "" "" "" "inicio" "aqu&iacute;" %} para regresar a la p&aacute;gina de inicio.<br/>		
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

@@ -1,0 +1,101 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/general/busquedaUsuarios.html
+Julian Perez
+Ultima modificacion: Agosto 09 de 2009, 10:33
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+   b&uacute;squeda de usuarios
+{% endblock %}
+
+{% block importarEstilos %}
+	{% cargarCSS "relaciones/busquedaUsuarios" %}
+{% endblock %}
+
+{% block importarScripts %}
+	{% cargarJavascript "relaciones/busquedaUsuarios" %}
+{% endblock %}
+
+{% block contenido %}
+
+	{% if not usuarioActual.is_staff %}{% include "relaciones/enlaces_menuAmistades.html" %}{% endif %}
+
+   <p class="p_textoTitulo encabezado">
+		B&uacute;squeda de usuarios
+   </p>
+
+	Para empezar a tener amigos, este es el comienzo.<br/>
+	B&uacute;scalos a todos, exam&iacute;nalos y j&uacute;zgalos.<br/>
+	Y, por supuesto, env&iacute;ales solicitudes de amistad.<br/>
+	<br/>	
+	{% if formulario %}	
+		Para buscar usuarios, diligencia el formulario a continuaci&oacute;n<br/>
+		<br/>	
+		{% if errorOperacion %}
+			{% crearMensajeEstadoError errores_errorFormulario %}
+		{% endif%}		
+		<div class="div_cuadroInterno">
+			<form action="{% url enlace_busquedaUsuarios %}" method="post" onSubmit="return validarFormulario_completo()">
+				{{ formulario.as_p }}
+				<input class="input_boton" type="submit" value="buscar usuarios"/>
+			</form>
+		</div>
+		<p class="p_textoTitulo sugerencia">
+			Para tener en cuenta
+		</p>
+		<ul>
+			<li>Todos los campos son <u>obligatorios</u>.</li>
+			<li>Puedes combinar los par&aacute;metros de b&uacute;squeda <u>como quieras</u>.</li>
+			<li>Para <u>omitir</u> alg&uacute;n campo de la b&uacute;squeda, el valor por defecto es <i>-sin establecer-</i>.</li>
+		</ul>
+	{% else %}
+		A continuaci&oacute;n est&aacute;n los resultados de la b&uacute;squeda que realizaste<br/>
+		<br/>
+		{% ifequal numeroResultados 0 %}
+			{% crearMensajeEstadoAlerta "&iexcl;Oops!<br/>La b&uacute;squeda que realizaste no obtuvo resultados.<br/>Ni uno solito..." %}
+			<b><a title="redefinir la b&uacute;squeda | {{ nombreAplicacion }}" href="/" onClick="return irAtras()">redefinir la b&uacute;squeda</a></b><br/>
+		{% else %}
+			<div class="div_cuadroInterno">
+				<b>N&uacute;mero total de resultados</b>: {{ numeroResultados }}<br/>
+				<br/>
+				{% for usuarioEncontrado in listaUsuarios %}
+					<div class="div_miniPerfil">
+						<div class="div_resumenAvatar">{% mostrarAvatar usuarioEncontrado.user "img_avatar" usuarioEncontrado.user.username %}</div>
+						<div class="div_resumenDatos">
+							<span class="span_textoResaltado"><b>{{ usuarioEncontrado.user }}</b></span><br/>
+							{% crearEnlacePerfil usuarioEncontrado.user usuarioActual "ver perfil" %}<br/>
+							<br/>
+							<b>Sexo</b>: {{ usuarioEncontrado.get_sexo_display }}<br/>
+							<b>Pa&iacute;s</b>: {{ usuarioEncontrado.get_pais_display }}<br/>
+							<b>Lugar</b>: {{ usuarioEncontrado.lugar }}<br/>
+							<br/>
+							{% if not usuarioActual.is_staff %}
+								<b>{% crearEnlacesAmistad usuarioEncontrado.user usuarioActual %}</b>
+							{% endif %}
+						</div>
+					</div>
+				{% endfor %}
+				<b><a title="redefinir la b&uacute;squeda | {{ nombreAplicacion }}" href="/" onClick="return irAtras()">redefinir la b&uacute;squeda</a></b><br/>
+				<b>{% crearEnlace "enlace_busquedaUsuarios" "" "" "" "realizar una nueva b&uacute;squeda" "realizar una nueva b&uacute;squeda" %}</b>
+			</div>
+		{% endifequal %}		
+	{% endif %}
+	<br/>
+	&mdash;
+	<br/><br/>
+	Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para regresar a la p&aacute;gina de inicio.<br/>
+	O {% crearEnlace "enlace_mostrarSolicitudesAmistad" "" "" "" "centro de amistades" "aqu&iacute;" %} para regresar al centro de amistades.
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

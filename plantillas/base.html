@@ -1,0 +1,75 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/base.html
+Julian Perez
+Ultima modificacion: Marzo 09 de 2009, 16:08
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% load etiquetas %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+      {% block importarMetas %}{% endblock %}
+		<title>{% block tituloBarra %}{% endblock %} | {{ nombreAplicacion }}</title>
+		{% cargarFavicon %}
+		{% cargarCSSBase usuarioActual %}
+		{% cargarCSS "jquery/jquery-ui-1.7.1.custom" %}
+		{% block importarEstilos %}{% endblock %}
+		{% cargarJavascript "base_variables" %}
+		{% cargarJavascript "base" %}
+		{% cargarJavascript "jquery/jquery-1.3.2.min" %}
+		{% cargarJavascript "jquery/jquery-ui-1.7.1.custom.min" %}
+		{% block importarScripts %}{% endblock %}
+
+	</head>
+	
+	<body onLoad="ocultarIndicadorAjax()" onUnload="mostrarIndicadorAjax()">
+
+		<div id="div_indicadorPrincipal">por favor espera...<br/>{% cargarImagen "savia_cargador.gif" "img_cargador" "" "" "" %}</div>
+		
+		<div id="div_capaCubierta">
+			<div id="div_capaMensajes">
+				{% verificarJavascript %}
+			</div>
+		</div>
+			
+		<div id="div_contenedorPrincipal">	
+				
+			<div id="div_cabeceraPagina">
+				<div id="div_logoPagina">{% cargarLogo %}</div>
+				<div id="div_enlacesPrincipales">
+					{% include "general/enlacesPrincipales.html" %}
+				</div>				
+			</div>			
+			
+			<div id="div_contenedorCentral">
+				<div id="div_menuLateral">
+					{% include "general/enlacesLaterales.html" %}
+				</div>
+				<div class="div_separadorVertical"></div>
+				<div id="div_contenidoPagina">
+					{% block contenido %}{% endblock %}
+				</div>		
+			</div>
+			
+			<div id="div_acercaDe">
+				<b>sistema para el almacenamiento y gesti&oacute;n virtual de archivos</b><br/>
+				{{ versionActual }} &copy; 2009<br/>
+			</div>		
+			
+		</div>
+		
+	</body>
+	
+</html>
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

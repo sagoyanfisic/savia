@@ -1,0 +1,31 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/correo/activarCuentaUsuario_mesnaje.html
+Julian Perez
+Ultima modificacion: Agosto 02 de 2009, 10:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "correo/base.html" %}
+
+{% block tituloMensaje %}
+	Activar mi cuenta de usuario
+{% endblock %}
+
+{% block contenido %}
+	Este mensaje ha llegado hasta aqu&iacute; porque vas a activar una nueva cuenta de usuario.<br/>
+	No te preocupes...<br/>
+	Lo hacemos f&aacute;cil para ti.<br/>
+	<br/>
+	<b>
+	Para activar tu cuenta de usuario ({{ usuarioActual }}), haz clic aqu&iacute;:
+	<br/>
+	{{ protocolo }}://{{ dominio }}{% url enlace_crearCuentaUsuario_activar uidb36=uid,token=token %}
+	</b>
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

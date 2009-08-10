@@ -1,0 +1,75 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/general/mostrarAcercade.html
+Julian Perez
+Ultima modificacion: Marzo 10 de 2009, 10:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra%}
+	acerca de
+{% endblock %}
+
+{% block contenido %}
+
+   <p class="p_textoTitulo encabezado">
+		savia fue desarollado por
+   </p>
+   <b>Juli&aacute;n C. P&eacute;rez</b> aka <u>jcpmmx</u><br/>
+   <b>Eduardo Arag&oacute;n</b> aka <u>earagon</u><br/>
+   <br/>
+   como proyecto de trabajo de grado<br/>
+   para aspirar al t&iacute;tulo de <i>Ingeniero de Sistemas y Computaci&oacute;n</i><br/>
+   en la Universidad del Valle, en Cali, Colombia.<br/>
+   <br/>
+   <p class="p_textoTitulo encabezado">
+		savia fue posible gracias a
+   </p>
+   <b>mis padres, mis hermanos -el nombre fue sugerencia de andr&eacute;s, a mi novia, a aragon que ha sido mi amigo toda la vida, a los patanes y todos los dem&aacute;s</b> (jcpmmx)<br/>
+   <b>-dedicatoria-</b> (earagon)<br/>
+   <b>la Universidad del Valle y CEDESOFT</b><br/>
+   <b>el profe Gaona</b><br/>
+   <br/>
+   bien sea con su apoyo como familiares, amigos, conocidos, colaboradores o profesores<br/>
+   y con su ayuda, tanto en la parte del conocimiento+formaci&oacute;n como en la parte an&iacute;mica</i><br/>
+   a todos: gracias!<br/>
+   <br/>
+   <p class="p_textoTitulo encabezado">
+		savia funciona porque utiliza tecnolog&iacute;a de
+   </p>
+	<u>cada producto tiene derechos reservados</u><br/>
+   <b>python (v2.5) - {% crearEnlace "http://www.python.org/" "" "" "" "python" "[enlace]" %}</b><br/>
+	<b>django project (v1.0) - {% crearEnlace "http://www.djangoproject.org/" "" "" "" "django project" "[enlace]" %}</b><br/>
+	<b>apache server (v2.2) - {% crearEnlace "http://www.apache.org/" "" "" "" "apache server" "[enlace]" %}</b><br/>
+	<b>modwgsi for apache (v1.08) - {% crearEnlace "http://code.google.com/p/modwsgi/" "" "" "" "modwsgi" "[enlace]" %}</b><br/>
+   <b>xhtml + css (v1.0 transitional + level2) - {% crearEnlace "http://www.w3.org" "" "" "" "w3c" "[enlace]" %}</b><br/>
+	<b>jquery (v1.3.2) + jquery ui (v1.7.1) - {% crearEnlace "http://jquery.com" "" "" "" "jquery" "[enlace]" %}</b><br/>
+   <b>subversion (v1.5.1) - {% crearEnlace "http://subversion.tigris.org" "" "" "" "subversion" "[enlace]" %}</b><br/>
+	<b>google code - {% crearEnlace "http://code.google.com" "" "" "" "google code" "[enlace]" %}</b><br/>
+   <b>python imaging library (v1.1.6) - {% crearEnlace "http://www.pythonware.com/products/pil/" "" "" "" "python imaging library" "[enlace]" %}</b><br/>
+   <b>google maps - {% crearEnlace "http://maps.google.com" "" "" "" "google maps" "[enlace]" %}</b><br/>
+	<b>geo names - {% crearEnlace "http://ws.geonames.org/" "" "" "" "geo names" "[enlace]" %}</b><br/>
+   <b>google data api python client library - {% crearEnlace "http://code.google.com/p/gdata-python-client/" "" "" "" "google data api" "[enlace]" %}</b><br/>
+	<u>algunas funcionalidades fueron inspiradas en</u><br/>
+	<b>redirecting browser to a page if javascript support is not there - {% crearEnlace "http://www.plus2net.com/javascript_tutorial/javascript_support.php" "" "" "" "checking js" "[enlace]" %}</b><br/>
+	<b>django-profile (v0.6) - {% crearEnlace "http://code.google.com/p/django-profile/" "" "" "" "django-profile" "[enlace]" %}</b><br/>
+	<b>ajax progress bar with jquery, django and nginx- {% crearEnlace "http://www.fairviewcomputing.com/blog/2008/10/21/ajax-upload-progress-bars-jquery-django-nginx/" "" "" "" "ajax progress bar" "[enlace]" %}</b><br/>
+	<br/>
+   y todas son herramientas <i>open source</i>, por supuesto!
+	<br/><br/>
+	&mdash;
+	<br/><br/>
+	Haz clic {% crearEnlace "enlace_mostrarInicio" "" "" "" "inicio" "aqu&iacute;" %} para regresar a la p&aacute;gina de inicio.<br/>			
+	
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

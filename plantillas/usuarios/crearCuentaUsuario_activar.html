@@ -1,0 +1,51 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/usuarios/recuperarContrasena_confirmar.html
+Julian Perez
+Ultima modificacion: Julio 24 de 2009, 10:33
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+	activar mi cuenta de usuario
+{% endblock %}
+
+{% block contenido %}
+
+	<p class="p_textoTitulo encabezado">
+		Activar mi cuenta de usuario
+	</p>
+
+	{% if enlaceValido %}
+		{% crearMensajeEstadoExito "&iexcl;Listo!<br/>Tu cuenta de usuario fue activada.<br/>Satisfactoriamente." %}
+		Comienza a <b>fluir</b> en ti la sabia <i>savia</i>.<br/>
+		A partir de ahora eres <b>uno m&aacute;s</b>.<br/>
+		<b>&iexcl;Bienvenido!</b>
+		<br/><br/>
+		&mdash;
+		<br/><br/>
+		Ahora si, haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para iniciar sesi&oacute;n.							
+	{% else %}
+		{% crearMensajeEstadoError "&iexcl;Ooops!<br/>El enlace para la activaci&oacute;n de tu cuenta de usuario es inv&aacute;lido o ya expir&oacute;.<br/>Disculpa la incomodad." %}
+		Aseg&uacute;rate de haber seguido el <b>enlace correcto</b>.<br/>
+		&iquest;O no ser&aacute; que ya hab&iacute;as activado tu cuenta de usuario <b>este mismo enlace</b>?<br/>
+		Sea cual sea la causa, puedes <b>reiniciar el proceso</b> cuantas veces <i>quieras</i>.
+		<br/><br/>
+		&mdash;
+		<br/><br/>
+		Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para ir a la p&aacute;gina de inicio.<br/>
+		O {% crearEnlace "enlace_crearCuentaUsuario" "" "" "" "&iexcl;d&eacute;jala fluir!" "aqu&iacute;" %} para crear una nueva cuenta de usuario otra vez.<br/>
+		{% crearEnlaceContacto %}
+	{% endif %}	
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

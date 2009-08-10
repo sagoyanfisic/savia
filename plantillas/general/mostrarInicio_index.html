@@ -1,0 +1,67 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/general/index.html
+Julian Perez
+Ultima modificacion: Mayo 03 de 2009, 16:08
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+	iniciar sesi&oacute;n
+{% endblock %}
+
+{% block importarEstilos %}
+	{% cargarCSS "general/mostrarInicio" %}
+{% endblock %}
+
+{% block contenido %}
+
+   <p class="p_textoTitulo encabezado">
+		Iniciar sesi&oacute;n
+   </p>
+
+	<b>&iexcl;Bienvenido!</b><br/>
+	Esta es tu casa. Hoy y siempre.<br/>
+   &iexcl;Nos vemos dentro!<br/><br/>
+	Para iniciar sesi&oacute;n, diligencia el formulario a continuaci&oacute;n<br/>
+	<br/>
+	{% if iniciarSesion_error %}
+		{% crearMensajeEstadoError iniciarSesion_error %}
+	{% endif %}
+	<div id="div_iniciarSesion">
+		<div class="div_cuadroInterno">
+			<form method="post" action="{% url enlace_mostrarInicio %}" onSubmit="return validarFormulario_completo()">
+				<p>
+					<label for="username">Nombre de usuario:</label>
+					<input name="username" value="" id="username" type="text"/>
+				</p>
+				<p>
+					<label for="password">Contrase&ntilde;a:</label>
+					<input name="password" value="" id="password" type="password"/>
+				</p>
+				<input class="input_boton" type="submit" value="iniciar sesi&oacute;n"/>
+			</form>
+		</div>
+	</div>
+	<p class="p_textoTitulo sugerencia">
+		Para tener en cuenta
+	</p>
+	<ul>
+		<b>
+			<li>{% crearEnlace "enlace_crearCuentaUsuario" "" "" "" "&iexcl;d&eacute;jala fluir!" "&iquest;No tienes cuenta de usuario?" %}</li> 
+			<li>{% crearEnlace "enlace_recuperarContrasena" "" "" "" "recuperar mi contrase&ntilde;a" "&iquest;Olvidaste tu contrase&ntilde;a?" %}</li>
+			<li>{% crearEnlace "enlace_mostrarAyuda" "" "" "" "ayuda" "&iquest;Necesitas algo de ayuda?" %}</li>
+		</b>
+	</ul>		
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

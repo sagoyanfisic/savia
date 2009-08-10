@@ -1,0 +1,41 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/usuarios/enlaces_menuPerfil.html
+Julian Perez
+Ultima modificacion: Abril 26 de 2009, 22:08
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% load etiquetas %}
+
+{% if usuarioActual %}
+   <div class="div_enlacesMenu">
+		<div class="div_flotarIzquierda">
+			<span class="span_textoResaltado">mi perfil</span>
+			<br/>
+			{% crearEnlace "enlace_mostrarPerfil_principal" "" "" "" "mi perfil: resumen" "resumen" %}
+			&nbsp;&middot;&nbsp;
+			{% crearEnlace "enlace_editarPerfil_informacion" "" "" "" "mi perfil: informaci&oacute;n personal" "informaci&oacute;n personal" %}
+			&nbsp;&middot;&nbsp;
+			{% crearEnlace "enlace_editarPerfil_avatar" "" "" "" "mi perfil: avatar" "avatar" %}
+			&nbsp;&middot;&nbsp;
+			{% crearEnlace "enlace_editarPerfil_ubicacion" "" "" "" "mi perfil: ubicaci&oacute;n" "ubicaci&oacute;n" %}
+			&nbsp;&middot;&nbsp;
+			{% crearEnlace "enlace_mostrarPerfil_publico" usuarioActual.username "" "" "mi perfil p&uacute;blico" "ver mi perfil p&uacute;blico" %}
+		</div>
+		<div class="div_flotarDerecha">
+			<span class="span_textoResaltado">mi cuenta de usuario</span>
+			<br/>
+			{% crearEnlace "enlace_modificarContrasena" "" "" "" "modificar mi contrase&ntilde;a" "modificar mi contrase&ntilde;a" %}
+			&nbsp;&middot;&nbsp;
+			{% crearEnlace "enlace_eliminarCuentaUsuario" "" "" "" "eliminar mi cuenta de usuario" "eliminar mi cuenta de usuario" %}
+		</div>
+		<div class="div_limpiarZona"></div>
+	</div>
+{% endif %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

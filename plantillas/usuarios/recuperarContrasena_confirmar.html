@@ -1,0 +1,84 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/usuarios/recuperarContrasena_confirmar.html
+Julian Perez
+Ultima modificacion: Julio 24 de 2009, 10:33
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+	recuperar mi contrase&ntilde;a
+{% endblock %}
+
+{% block importarScripts %}
+	{% cargarFuncionJS "otorgarFoco" "id_contrasenaVieja" %}
+{% endblock %}
+
+{% block contenido %}
+
+	<p class="p_textoTitulo encabezado">
+		Recuperar mi contrase&ntilde;a
+	</p>
+
+	{% if enlaceValido %}
+		{% if formulario %}
+			Y seguimos en el proceso de darte una nueva llave...<br/>
+			Ya te dije que no hay de qu&eacute; preocuparse: no eres el primero ni ser&aacute;s el &uacute;ltimo.<br/>
+			Pero para la pr&oacute;xima: trata de preservarla siempre lo mejor que puedas.<br/>
+			<br/>			
+			Para establecer tu nueva contrase&ntilde;a, diligencia el formulario a continuaci&oacute;n<br/>
+			<br/>
+			{% if errorOperacion %}
+				{% crearMensajeEstadoError errores_errorFormulario %}
+			{% endif%}			
+			<div class="div_cuadroInterno">
+				<form action="{% url enlace_recuperarContrasena_confirmar idUsuario llaveRecuperacion %}" method="post" onSubmit="return validarFormulario_completo()">
+					{{ formulario.as_p }}
+					<input class="input_boton" type="submit" value="establecer mi contrase&ntilde;a"/>
+				</form>
+			</div>
+			<p class="p_textoTitulo sugerencia">
+				Para tener en cuenta
+			</p>
+			<ul>
+				<li>Todos los campos son <u>obligatorios</u>.</li>
+				<li>La nueva contrase&ntilde;a debe tener <u>por lo menos 5 caracteres</u> de longitud.</li>
+				<li>Es indispensable (y evidente) que los campos <i>Nueva contrase&ntilde;a</i> y <i>Nueva contrase&ntilde;a (otra vez)</i> <u>deben coincidir</u>.</li>
+			</ul>
+			<br/>
+			&mdash;
+			<br/><br/>			
+			Haz clic {% crearEnlace "enlace_recuperarContrasena" "" "" "" "recuperar mi contrase&ntilde;a" "aqu&iacute;" %} para iniciar el proceso de recuperaci&oacute;n de tu contrase&ntilde;a otra vez.
+		{% else %}
+			{% crearMensajeEstadoExito "&iexcl;Listo!<br/>Tu contrase&ntilde;a fue establecida.<br/>Satisfactoriamente." %}
+			Fue f&aacute;cil, tal como te dijimos... <b>&iquest;no?</b><br/>
+			<b>Sin complicaciones</b>.<br/>
+			Por favor, <b>cuida mejor</b> tu nueva contrase&ntilde;a.
+			<br/><br/>
+			&mdash;
+			<br/><br/>
+			Ahora si, haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para iniciar sesi&oacute;n.			
+		{% endif %}					
+	{% else %}
+		{% crearMensajeEstadoError "&iexcl;Ooops!<br/>El enlace para la recuperaci&oacute;n de tu contrase&ntilde;a es inv&aacute;lido o ya expir&oacute;.<br/>Disculpa la incomodad." %}
+		Aseg&uacute;rate de haber seguido el <b>enlace correcto</b>.<br/>
+		&iquest;O no ser&aacute; que ya hab&iacute;as realizado el cambio de contrase&ntilde;a desde <b>este mismo enlace</b>?<br/>
+		Sea cual sea la causa, puedes <b>reiniciar el proceso</b> cuantas veces <i>quieras</i>.
+		<br/><br/>
+		&mdash;
+		<br/><br/>
+		Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para regresar a la p&aacute;gina de inicio.<br/>
+		O {% crearEnlace "enlace_recuperarContrasena" "" "" "" "recuperar mi contrase&ntilde;a" "aqu&iacute;" %} para iniciar el proceso de recuperaci&oacute;n de tu contrase&ntilde;a otra vez.	
+	{% endif %}	
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

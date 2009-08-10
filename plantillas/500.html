@@ -1,0 +1,39 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/500.html
+Julian Perez
+Ultima modificacion: Mayo 12 de 2009, 19:57
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra%}
+	error 500
+{% endblock %}
+
+{% block contenido %}
+
+   <p class="p_textoTitulo encabezado">
+		Error interno del servidor
+   </p>
+	
+	{% crearMensajeEstadoError "&iexcl;Ooops!<br/>Hay problemas.<br/>Error 500." %}
+	&iquest;<b>A d&oacute;nde</b> crees que vas, ehhh?<br/>
+	<u>No puedes ver esta p&aacute;gina</u>... &iquest;por qu&eacute;? Porque <b>el servidor fall&oacute;</b>!<br/>
+	&iquest;Preocuparse? Nahhh... este incidente <b>ser&aacute; solucionado</b> muy pronto.
+	<br/><br/>
+	&mdash;
+	<br/><br/>
+	Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para ir a la p&aacute;gina de inicio.<br/>
+	{% crearEnlaceContacto %}
+	
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

@@ -1,0 +1,16 @@
+------------------------------------
+Recuperar mi contrasena
+------------------------------------
+
+Hola {{ usuarioActual_nombre }}!
+Este mensaje ha llegado hasta aqui porque deseas recuperar tu contrasena.
+No te preocupes... lo hacemos facil para ti.
+
+Para recuperar tu contrasena, haz clic aqui:
+{{ protocolo }}://{{ dominio }}{% url enlace_recuperarContrasena_confirmar uidb36=uid,token=token %}
+
+Sigue disfrutando!
+
+---
+
+sabia savia por mi cuerpo

@@ -1,0 +1,74 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/usuarios/recuperarContrasena.html
+Julian Perez
+Ultima modificacion: Julio 24 de 2009, 11:50
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra %}
+  recuperar mi contrase&ntilde;a
+{% endblock %}
+
+{% block importarScripts %}
+	{% cargarFuncionJS "otorgarFoco" "id_email" %}
+{% endblock %}
+
+{% block contenido %}
+
+	<p class="p_textoTitulo encabezado">
+		Recuperar mi contrase&ntilde;a
+	</p>
+
+	{% if formulario %}
+		Has olvidado tu contrase&ntilde;a, &iquest;no?<br/>
+		No te preocupes... no eres el primero ni ser&aacute;s el &uacute;ltimo.<br/>
+		Recuperarla es muy f&aacute;cil: nosotros lo hacemos por ti... e incluso que llevamos de la mano en el proceso.<br/>
+		<br/>	
+		Para recuperar tu contrase&ntilde;a, diligencia el formulario a continuaci&oacute;n<br/>
+		<br/>
+		{% if errorOperacion %}
+			{% crearMensajeEstadoError errores_errorFormulario %}
+		{% endif%}	
+		<div class="div_cuadroInterno">
+			<form action="{% url enlace_recuperarContrasena %}" method="post" onSubmit="return validarFormulario_completo()">
+				{{ formulario.as_p }}
+				<input class="input_boton" type="submit" value="recuperar mi contrase&ntilde;a" />
+			</form>
+		</div>
+		<p class="p_textoTitulo sugerencia">
+			Para tener en cuenta
+		</p>
+		<ul>
+			<li>Todos los campos son <u>obligatorios</u>.</li>
+			<li>Una direcci&oacute;n de correo electr&oacute;nico <u>v&aacute;lida</u> es de la forma, por ejemplo, <i>nombreUsuario@servidor.com</i>.</li>
+			<li>Digita <u>la misma direcci&oacute;n de correo electr&oacute;nico</u> que registraste cuando tu cuenta de usuario fue creada.</li>
+			<li>Una vez la direcci&oacute;n de correo electr&oacute;nico sea verificada <u>recibir&aacute;s un mensaje</u> con las instrucciones para continuar con el proceso.</li>
+		</ul>
+		<br/>
+		&mdash;
+		<br/><br/>		
+		{% crearEnlaceContacto %}
+	{% else %}
+		{% crearMensajeEstadoExito "&iexcl;Listo!<br/>Un mensaje de correo electr&oacute;nico fue enviado.<br/>Satisfactoriamente." %}
+		Ahora, lo siguiente es f&aacute;cil: <b>revisa</b> tu correo electr&oacute;nico.<br/>
+		<b>Busca el mensaje</b> que acaba de ser enviado (que <i>puede</i> demorarse alg&uacute;n tiempo en llegar).<br/>
+		Para continuar con este proceso, <b>sigue las instrucciones</b> que encuentres.
+		<br/><br/>
+		&mdash;
+		<br/><br/>
+		Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para regresar a la p&aacute;gina de inicio.<br/>
+		O {% crearEnlace "enlace_recuperarContrasena" "" "" "" "recuperar mi contrase&ntilde;a" "aqu&iacute;" %} para iniciar el proceso de recuperaci&oacute;n de tu contrase&ntilde;a otra vez.				
+	{% endif %}			
+	
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

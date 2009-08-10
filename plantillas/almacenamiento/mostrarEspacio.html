@@ -1,0 +1,59 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/archivos/mostrarEspacio.html
+Julian Perez
+Ultima modificacion: Marzo 31 de 2009, 10:16
+""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% block tituloBarra%}
+	mis archivos: mostrar mi espacio
+{% endblock %}
+
+{% block importarScripts %}
+	<script type="text/javascript" src="{{ url_media }}js/dynatree/jquery/jquery.cookie.js"></script>  
+   <script type="text/javascript" src="{{ url_media }}js/dynatree/jquery/jquery.js"></script>  
+   <script type="text/javascript" src="{{ url_media }}js/dynatree/jquery/ui.core.js"></script>  
+	<script type="text/javascript" src="{{ url_media }}js/dynatree/src/jquery.dynatree.js"></script> 
+   <script type="text/javascript" src="{{ url_media }}js/dynatree/doc/prettify.js"></script> 
+   <script type="text/javascript" src="{{ url_media }}js/dynatree/doc/sample.js"></script> 
+   <link type='text/css' rel='stylesheet' href="{{ url_media }}js/dynatree/doc/skin-vista/ui.dynatree.css"></script> 
+   <link type='text/css' rel='stylesheet' href="{{ url_media }}js/dynatree/doc/prettify.css"></script>   
+   <link type='text/css' rel='stylesheet' href="{{ url_media }}js/dynatree/doc/sample.css"></script> 
+   <link type='text/css' rel='stylesheet' href="{{ url_media }}css/base.css"></script> 
+	<script type="text/javascript" charset="utf-8">
+	$(function()
+	{
+		$("#tree").dynatree(
+		{
+			title: "<b>Mi espacio: {{ usuarioActual.username }}</b>",
+			rootVisible: true,
+			onSelect: function(dtnode) {
+				alert ("You selected " + dtnode);
+			}
+		});
+	});
+	</script>
+{% endblock %}
+
+{% block body %}
+	<body>
+{% endblock %}
+
+{% block contenido %}
+
+	<p class="p_textoTitulo encabezado">
+		Mis archivos: mostrar mi espacio
+	</p>
+
+	<p class="p_textoTitulo">En remodelacion!</b>
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""" -->

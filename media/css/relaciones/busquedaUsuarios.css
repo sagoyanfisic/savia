@@ -1,0 +1,51 @@
+/*
+----------------------------------------------------------------------
+---
+savia/media/css/relaciones/busquedaUsuarios.css
+Julian Perez
+Ultima modificacion: Agosto 04 de 2009, 22:36
+---
+----------------------------------------------------------------------
+*/
+
+
+
+/* ---------------------------------------------------------------------- */
+
+.div_miniPerfil
+{
+	width: 100%;
+	margin-bottom: 1em;
+	display: table;
+	border-collapse: collapse;
+	background: #F7F7F7;
+	border: #90A860 solid 2px;
+}
+
+.div_resumenAvatar
+{
+	width: 13%;
+	padding: 1em 1.33em 1em 1.33em;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#img_avatar
+{
+	border: #1E2444 solid 2px;
+}
+
+.div_resumenDatos
+{
+	width: 87%;
+	padding: 1em 1.33em 1em 1.33em;
+	display: table-cell;
+}
+
+.span_datoPerfil
+{
+	padding: 0em 0em 0.33em 0em;
+	display: block;
+}
+
+/* ---------------------------------------------------------------------- */

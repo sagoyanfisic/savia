@@ -1,0 +1,499 @@
+/*
+----------------------------------------------------------------------
+---
+savia/media/css/base.css
+Julian Perez
+Ultima modificacion: Julio 22 de 2009, 22:36
+---
+----------------------------------------------------------------------
+*/
+
+
+
+/* ---------------------------------------------------------------------- */
+/*
+Paleta de colores:
+- Verde fondo logo: #808000
+- Azul oscuro: #1E2444
+- Azul claro: #90C0D8
+- Verde oliva oscuro: #486030
+- Verde oliva claro: #90A860
+- Amarillo indicador: #F5F3BF
+- Cafe botones: #804000
+- Verde exito: #E0F8E0, #006600, #009900
+- Rojo error: #FFEEEE, #CC0000, #FF0000
+- Azul alerta: #E0E0F8, #0000CC, #0000FF
+*/
+
+html
+{
+	height: 100%;		
+}
+
+body
+{
+   width: 100%;
+	height: 100%;
+	overflow: auto;
+	z-index: 1;
+	padding: 0em;
+	margin: 0em;
+	background: #CCCCCC url(../img/savia_fondo.png) repeat-x fixed top left;
+	font-family: "Helvetica", sans-serif;
+	font-size: 0.7em;
+}
+
+#div_indicadorPrincipal
+{
+	width: 100%;
+	height: 3em;
+	z-index: 7781;
+	padding: 0.5em 0em 0.5em 0em;
+	visibility: visible;
+	top: 0.33em;
+	position: fixed;
+	border-top: #000000 solid 1px;
+	border-bottom: #000000 solid 1px;
+	background-color: #F5F3BF;
+	text-align: center;
+	font-weight: bold;
+}
+
+#img_cargador
+{
+	margin-top: 0.33em;
+}
+
+#div_capaCubierta
+{
+	width: 100%;
+	height: 100%;
+	z-index: 7779;
+	padding: 0em;
+	margin : 0em;
+	visibility: visible;
+	position: fixed;
+	background: url(jquery/images/ui-overlay.png) repeat;
+}
+
+#div_capaMensajes
+{
+	width: 100%;
+	z-index: 7780;
+	padding: 0em;
+	margin: 0em;
+	visibility: visible;
+	bottom: -0.77em;
+	position: fixed;
+}
+
+#div_contenedorPrincipal
+{
+	width: 77%;
+	min-height: 100%;
+	padding: 0em 1em 0em 1em;
+	margin: 0em auto 0em auto;
+	background: #808000;
+	border-left: #000000 solid 2px;
+	border-right: #000000 solid 2px;
+}
+
+#div_cabeceraPagina
+{
+	padding: 1em 0em 0em 0em;
+}
+
+#div_logoPagina
+{
+	margin: 0em 0em 1em 0em;
+	text-align: center;
+	background: url(../img/savia_logo_fondo.gif);
+}
+
+#div_enlacesPrincipales
+{
+	padding: 0.77em 0.55em 0.77em 0.55em;
+	background: #FFFFFF;
+	border: #000000 solid 1px;
+	font-weight: bold;
+}
+
+#div_contenedorCentral
+{
+	width: 100%;
+	margin: 0.33em 0em 0.33em 0em;
+	display: table;
+}
+
+#div_menuLateral
+{
+	width: 33px;
+	padding: 1em 0em 1em 0em;
+	margin: 0em;
+	display: table-cell;
+	background: #FFFFFF;
+	border: #000000 solid 1px;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: top;
+}
+
+#div_temaOriginal
+{
+	width: 16px;
+	padding: 0.09em;
+	margin: 0em auto 0.55em auto;
+	background: #808000;
+	-moz-border-radius: 9px; -webkit-border-radius: 9px;
+}
+
+#div_seleccionColor
+{
+	width: 14px;
+	padding: 0.33em;
+	margin: 0em auto 0.55em auto;
+	display: none;
+	border: #000000 solid 1px;
+}
+
+.div_colorInterfaz
+{
+	padding: 0px 7px 0px 7px;
+	margin: 0em 0em 0.33em 0em;
+	cursor: pointer;
+	-moz-border-radius: 7px; -webkit-border-radius: 7px;
+}
+
+.div_enlaceLateral
+{
+	padding: 0em;
+	margin: 0em 0em 0.55em 0em;
+	cursor: pointer;
+}
+
+.img_enlaceLateral
+{
+	border: none;
+}
+
+.div_separadorVertical
+{
+	width: 0.37em;
+	display: table-cell;
+}
+
+#div_contenidoPagina
+{
+	padding: 1em;
+	margin: 0em;
+	display: table-cell;
+	background: #FFFFFF;
+	border: #000000 solid 1px;
+}
+
+#div_acercaDe
+{
+	padding: 1em;
+	margin: 0em auto 0em auto;
+	clear: both;
+	color: #FFFFFF;
+   text-align: center;
+}
+
+.div_flotarIzquierda
+{
+	float: left;
+	text-align: left;
+}
+
+.div_flotarDerecha
+{
+	float: right;
+	text-align: right;
+}
+
+.div_limpiarZona
+{
+	clear: both;
+}
+
+.div_enlacesMenu
+{
+   padding: 1em 0em 1em 0em;
+   margin-bottom: 2.33em;
+	border-top: #804000 solid 2px;
+	border-bottom: #804000 solid 2px;
+   font-weight: bold;
+   text-align: center;
+}
+
+a:link, a:hover, a:visited
+{
+	color: #804000;
+}
+
+a:hover
+{
+	color: #90C0D8;
+}
+
+.a_enlacePequeno:link, .a_enlacePequeno:active, .a_enlacePequeno:visited, .a_enlacePequeno:hover
+{
+	font-size: smaller;
+	border: none;
+}
+
+.a_enlaceSeccion:link, .a_enlaceSeccion:active, .a_enlaceSeccion:visited
+{
+	padding: 0.17em 0.33em 0.17em 0.33em;
+	margin: 0em 0.13em 0em 0.13em;
+	text-decoration: none;
+}
+
+.a_enlaceSeccion:hover
+{
+	color: #FFFFFF;
+	background: #804000 url(jquery/images/ui-widget-header.png) 50% 50% repeat-x;
+}
+
+.a_enlaceSeccion.actual
+{
+	padding: 0.77em 0.33em 0.77em 0.33em;
+	background: #804000 url(jquery/images/ui-widget-header.png) 50% 50% repeat-x;
+	color: #FFFFFF;
+}
+
+.span_encabezadoMensaje
+{
+	padding: 0px 0px 3px 0px;
+	margin: 0px auto 0px auto;
+	display: block;
+	text-align: center;
+	font-size: larger;
+}
+
+.p_textoTitulo
+{
+	font-size: larger;
+	font-weight: bold;
+}
+
+.p_textoTitulo.resaltado
+{
+	padding-bottom: 0.55em;
+	margin-bottom: 1em;
+	border-bottom: #1E2444 solid 2px;
+}
+
+.p_textoTitulo.centrado
+{
+	text-align: center;
+}
+
+.p_textoTitulo.encabezado
+{
+	color: #486030;
+}
+
+.p_textoTitulo.sugerencia
+{
+	padding: 0.5em 0em 0.5em 2em;
+	margin: 1em 0em 0em 0em;
+	background: url(../img/estado_alerta.gif) left center no-repeat;
+	border-top: #804000 solid 2px;
+}
+
+.p_textoMensajeDesplegable
+{
+	padding: 0px 0px 0px 33px;
+	font-weight: bold;
+}
+
+.p_textoMensajeDesplegable.exito
+{
+	background: url(../img/estado_exito.gif) left center no-repeat;
+}
+
+.p_textoMensajeDesplegable.error
+{
+	background: url(../img/estado_error.gif) left center no-repeat;
+}
+
+.p_textoMensajeDesplegable.alerta
+{
+	background: url(../img/estado_alerta.gif) left center no-repeat;
+}
+
+.div_iconoEstado
+{
+	padding: 0em 0.77em 0em 0.77em;
+	margin: 0em;
+	display: inline;
+}
+
+.div_iconoEstado.exito
+{
+	background: url(../img/estado_exito.gif) center no-repeat;
+}
+
+.div_iconoEstado.error
+{
+	background: url(../img/estado_error.gif) center no-repeat;
+}
+
+.div_iconoEstado.alerta
+{
+	background: url(../img/estado_alerta.gif) center no-repeat;
+}
+
+.span_espacioHorizontal
+{
+	height: 0.33em;
+	display: block;
+}
+
+.p_mensajeEstado
+{
+	margin: 0em auto 1em auto;
+	padding: 0.33em;
+	text-align: center;
+	font-weight: bold;
+}
+
+.p_mensajeEstadoLineal
+{
+	margin: 0em;
+	padding: 0em 1em 0em 1em;
+	display: inline;
+	text-align: center;
+   font-weight: bold;
+}
+
+.p_mensajeEstado.exito, .p_mensajeEstadoLineal.exito
+{
+	background: #E0F8E0;
+	color: #006600;
+	border: #009900 solid 1px;
+}
+
+.p_mensajeEstado.error, .p_mensajeEstadoLineal.error
+{
+	background: #FFEEEE;
+	color: #CC0000;
+	border: #FF0000 solid 1px;
+}
+
+.p_mensajeEstado.alerta, .p_mensajeEstadoLineal.alerta
+{
+	background: #E0E0F8;
+	color: #0000CC;
+	border: #0000FF solid 1px;
+}
+
+.div_cuadroInterno, .table_cuadroInterno
+{
+	padding: 1em 1em 2em 1em;
+	margin: 0em 0em 0em 0em;
+	background: #EEEEEE;
+	border: #804000 solid 1px;
+	-moz-border-radius: 7px; -webkit-border-radius: 7px;
+}
+
+label
+{
+	display: block;
+	margin: 5px;
+	font-weight: bold;
+}
+
+input, select, textarea
+{
+	font-size: smaller;
+	border: #804000 solid 2px;
+	color: #000000;
+	padding: 1px 3px 1px 3px;
+	margin-top: 3px;
+}
+
+textarea
+{
+	font-family: inherit;
+}
+
+select [selected]
+{
+	font-weight: bold;
+}
+
+.input_boton
+{
+	color: #FFFFFF;
+	background-color: #486030;
+	border: #000000 solid 1px;
+}
+
+fieldset
+{
+	width: auto;
+   padding: 0.55em 1.33em 0.55em 1.33em;
+	margin: 1em 0em 0em 0em;
+	border: #90A860 solid 2px;
+   font-weight: bold;
+}
+
+fieldset legend
+{
+	color: #486030;
+	font-size: larger;
+}
+
+.span_textoResaltado
+{
+	font-size: larger;
+}
+
+.div_campoOculto
+{
+	display: none;
+}
+
+ul
+{
+	padding: 0em 0em 0em 2em;
+	margin: 0em;
+}
+
+ul.errorlist
+{
+	padding: 0.33em 1em 0.33em 2.33em;
+	list-style-type: none;
+	background: #FFEEEE url(../img/flecha_abajo.gif) 0.33em center no-repeat;
+	border: #FF0000 solid 1px;
+	color: #CC0000;
+	font-weight: bold;
+}
+
+hr
+{
+	margin: 0em 0em 1em 0em;
+	border: #1E2444 solid 1px;
+}
+
+#div_navegadorPaginas
+{
+	width: 100%;
+	margin: 0em 0em 1em 0em;
+}
+
+#div_numeroTotal
+{
+	float: left;
+}
+
+#div_enlacesPaginas
+{
+	float: right;
+	font-weight: bold;
+}
+
+/* ---------------------------------------------------------------------- */

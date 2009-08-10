@@ -1,0 +1,107 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/relaciones/leerMensaje.html
+Julian Perez
+Ultima modificacion: Julio 31 de 2009, 10:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "base.html" %}
+
+{% load etiquetas %}
+
+{% block tituloBarra%}
+	mis mensajes {% if esMensajeRecibido %}recibidos{% else %}enviados{% endif %}: leer mensaje
+{% endblock %}
+
+{% block importarEstilos %}
+	{% if usuarioActual.is_staff %}{% cargarCSS "admin/base" %}{% endif %}
+	{% cargarCSS "relaciones/leerMensaje" %}
+{% endblock %}
+
+{% block importarScripts %}
+	{% cargarJavascript "relaciones/leerMensaje" %}
+{% endblock %}
+
+{% block contenido %}
+
+   {% include "relaciones/enlaces_menuMensajes.html" %}
+
+	<p class="p_textoTitulo encabezado">
+		Mis mensajes {% if esMensajeRecibido %}recibidos{% else %}enviados{% endif %}: leer mensaje
+	</p>
+
+	<div class="div_cuadroInterno">
+		<b>
+			{% if esMensajeRecibido  %}
+				<a title="mis mensajes recibidos | {{ nombreAplicacion }}" href="{% url enlace_mostrarMensajes_recibidos %}?pagina={{ paginaOrigenMensaje }}">regresar</a>
+			{% else %}
+				<a title="mis mensajes enviados | {{ nombreAplicacion }}" href="{% url enlace_mostrarMensajes_enviados %}?pagina={{ paginaOrigenMensaje }}">regresar</a>
+			{% endif%}
+		</b><br/>
+		<br/>
+		<i>Mensaje #{{ mensajeActual.id }}</i>.<br/>
+		<u>Fecha y hora de la primera vez que fue le&iacute;do:</u>
+		{% if esMensajeRecibido %}
+			{{ mensajeActual.fechaHoraLectura|date:"j \de F \de Y, \a \l\a\s g:iA" }}.<br/>
+		{% else %}
+			{% if mensajeActual.esNuevo %}No ha sido le&iacute;do a&uacute;n.<br/>{% else %}{{ mensajeActual.fechaHoraLectura|date:"j \de F \de Y, \a \l\a\s g:iA" }}.<br/>{% endif %}
+		{% endif %}
+		<br/>
+		<b>Enviado
+		{% if esMensajeRecibido %}
+			por <u>{{ mensajeActual.usuarioOrigen.get_full_name }} ({{ mensajeActual.usuarioOrigen }})</u>
+		{% else %}
+			a <u>{{ mensajeActual.usuarioDestino.get_full_name }} ({{ mensajeActual.usuarioDestino }})</u>
+		{% endif %} 
+		{% mostrarFechaHoraContextual mensajeActual.fechaHoraCreacion %}.<br/>
+		{{ mensajeActual.fechaHoraCreacion|date:"j \de F \de Y, \a \l\a\s g:iA" }}</b>.<br/>
+		<br/>
+		<div class="div_mensajeActual">
+			<p class="p_textoTitulo resaltado">
+				{% if esMensajeRecibido %}
+					<span id="span_tituloMensaje" class="span_mensaje{% if mensajeActual.esImportante %}Importante{% else %}Ordinario{% endif %}">&nbsp;</span>
+				{% endif %}
+				{{ mensajeActual.titulo }}
+			<p>
+			{{ mensajeActual.contenido }}
+		</div>
+	</div>
+	<p class="p_textoTitulo sugerencia">
+		Opciones
+	</p>
+	<ul>
+		<b>
+			{% if esMensajeRecibido %}
+				<li>
+					<a title="marcar/desmarcar como mensaje importante | {{ nombreAplicacion }}" href="{% url enlace_editarMensaje_modificarEstado mensajeActual.id %}?paginaOrigen={{ paginaOrigenMensaje }}" 
+					onClick="return modificarEstadoMensaje_mensaje(this)">
+						Marcar/desmarcar como mensaje importante
+					</a>
+				</li>
+				{% ifequal mensajeActual.usuarioOrigen.username usuarioAnonimo %}
+					<li><a title="responder este mensaje | {{ nombreAplicacion }}" href="{% url enlace_enviarCorreo mensajeActual.id %}?paginaOrigen={{ paginaOrigenMensaje }}">Responder este mensaje</a></li>
+				{% else %}
+					<li><a title="responder este mensaje | {{ nombreAplicacion }}" href="{% url enlace_responderMensaje mensajeActual.id %}?paginaOrigen={{ paginaOrigenMensaje }}">Responder este mensaje</a></li>
+				{% endifequal %}
+			{% endif %}
+			<li><a title="eliminar este mensaje | {{ nombreAplicacion }}" href="{% url enlace_eliminarMensaje mensajeActual.id %}" onClick="return confirmacion_eliminarMensaje(this, '1')">Eliminar este mensaje</a></li>
+		</b>
+	</ul>	
+	<br/>
+	&mdash;
+	<br/><br/>	
+	Haz clic {% crearEnlaceInicio "aqu&iacute;" "" %} para regresar a la p&aacute;gina de inicio.<br/>
+	{% if esMensajeRecibido  %}
+		O {% crearEnlace "enlace_mostrarMensajes_recibidos" "" "" "" "mis mensajes recibidos" "aqu&iacute;" %} para regresar a tus mensajes recibidos.
+	{% else %}
+		O {% crearEnlace "enlace_mostrarMensajes_enviados" "" "" "" "mis mensajes enviados" "aqu&iacute;" %} para regresar a tus mensajes enviados.
+	{% endif%}	
+
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

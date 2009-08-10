@@ -1,0 +1,38 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/archivos/subir_exito.html
+Julian Perez
+Ultima modificacion: Marzo 31 de 2009, 10:16
+""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+<!-- """""""""" -->
+
+{% extends "usuarios/enlaces.html" %}
+
+{% block tituloBarra%}
+	mis archivos: subir un nuevo archivo
+{% endblock %}
+
+{% block body %}
+	<body>
+{% endblock %}
+
+{% block contenido %}
+
+	<p class="p_textoTitulo encabezado">
+		Mis archivos: subir un nuevo archivo
+	</p>
+
+	<div id="div_formulario">
+		<br/>
+		<p class="p_mensajeEstado exito">
+			El archivo <u>{{ nombreDocumento }}</u> fue subido y almacenado en tu espacio satisfactoriamente como <span class="span_textoResaltado">{{ nombreArchivo }}</span>
+		</p>
+		<br/>
+		Haz clic <a title="mis archivos: subir un nuevo archivo | savia" href="/archivos/subir">aqu&iacute;</a> para subir un nuevo archivo.
+	</div>
+
+{% endblock %}
+
+<!-- """""""""" -->

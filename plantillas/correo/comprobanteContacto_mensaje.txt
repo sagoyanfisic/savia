@@ -1,0 +1,16 @@
+-------------------------------------
+Comprobante de contacto
+-------------------------------------
+
+Hola {{ usuarioActual_nombre }}!
+Este mensaje ha llegado hasta aqui porque enviaste un mensaje de contacto al administrador.
+No te preocupes... la siguiente solo es una copia de dicho mensaje.
+
+Fecha y hora: {{ fechaHoraActual|date:"j \de F \de Y, \a \l\a\s g:iA" }}
+{{ contenidoMensaje_texto }}
+
+Sigue disfrutando!
+
+---
+
+sabia savia por mi cuerpo

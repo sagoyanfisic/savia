@@ -1,0 +1,36 @@
+/*
+----------------------------------------------------------------------
+---
+savia/media/css/relaciones/leerMensaje.css
+Julian Perez
+Ultima modificacion: Julio 24 de 2009, 22:36
+---
+----------------------------------------------------------------------
+*/
+
+
+
+/* ---------------------------------------------------------------------- */
+
+.span_mensajeOrdinario
+{
+	padding: 0em 0em 0em 2em;
+	background: url(../../img/estado_ordinario.gif) left center no-repeat;
+	float: left;
+}
+
+.span_mensajeImportante
+{
+	padding: 0em 0em 0em 2em;
+	background: url(../../img/estado_importante.gif) left center no-repeat;
+	float: left;
+}
+
+.div_mensajeActual
+{
+	padding: 0em 1em 1em 1em;
+	background: #F7F7F7;
+	border: #90A860 solid 2px;
+}
+
+/* ---------------------------------------------------------------------- */

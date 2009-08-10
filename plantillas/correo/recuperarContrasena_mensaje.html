@@ -1,0 +1,31 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/correo/recuperarContrasena_mensaje.html
+Julian Perez
+Ultima modificacion: Mayo 14 de 2009, 10:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+{% extends "correo/base.html" %}
+
+{% block tituloMensaje %}
+	Recuperar mi contrase&ntilde;a
+{% endblock %}
+
+{% block contenido %}
+	Este mensaje ha llegado hasta aqu&iacute; porque deseas recuperar tu contrase&ntilde;a.<br/>
+	No te preocupes...<br/>
+	Lo hacemos f&aacute;cil para ti.<br/>
+	<br/>
+	<b>
+	Para recuperar tu contrase&ntilde;a, haz clic aqu&iacute;:
+	<br/>
+	{{ protocolo }}://{{ dominio }}{% url enlace_recuperarContrasena_confirmar uidb36=uid,token=token %}
+	</b>
+{% endblock %}
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->

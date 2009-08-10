@@ -1,0 +1,36 @@
+<!--
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+savia/plantillas/base_mensajeCorreo.html
+Julian Perez
+Ultima modificacion: Mayo 14 de 2009, 10:00
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-->
+
+
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
+
+<html>
+
+<body style="padding: 0em 0em 1em 0em; background-color: #808000; border: #000000 solid 1px; font-size: 11px; font-family: 'Helvetica', sans-serif;">
+	<div style="padding: 1em; text-align: center;">
+		<img alt="sabia savia por mi cuerpo | {{ nombreAplicacion }}" title="sabia savia por mi cuerpo | {{ nombreAplicacion }}" src="{{ protocolo }}://{{ dominio }}{{ rutaLogo }}"/>
+	</div>
+	<div style="padding: 1em; background-color: #FFFFFF;">
+		<p style="color: #486030; font-size: larger; font-weight: bold;">{% block tituloMensaje %}{% endblock %}</p>
+		<div style="padding: 1em 0em 1em 0em; margin-left: 0.55em; border-top: #1E2444 solid 2px; border-bottom: #1E2444 solid 2px;">
+			<b>Hola <u>{{ usuarioActual_nombre }}</u>!</b><br/>
+			<br/>
+			{% block contenido %}
+			{% endblock %}
+			<br/><br/>
+			<a title="sabia savia por mi cuerpo | {{ nombreAplicacion }}" href="{{ protocolo }}://{{ dominio }}{{ rutaInicio }}">&iexcl;Sigue disfrutando!</a>
+		</div>
+		<br/><br/>
+	</div>
+	<div style="margin-top: 1em; color: #FFFFFF; text-align: center; font-weight: bold;">{{ versionActual }} &copy; 2009</div>
+</body>
+
+</html>
+
+<!-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -->
